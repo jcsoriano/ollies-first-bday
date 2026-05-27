@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olivia Marie is Turning One! 🌸</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Playful & Rounded Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        woodland: {
+                            cream: '#FAF7F0',
+                            beige: '#F4EFE6',
+                            blush: '#F2D1D1',
+                            pink: '#E29595',
+                            darkpink: '#CD5C5C',
+                            brown: '#8D7B68',
+                            lightbrown: '#C8B6A6',
+                            green: '#A0B296',
+                            darkgreen: '#798777',
+                            yellow: '#F4DFB9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF7F0;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+        }
+        .woodland-pattern {
+            background-color: #FAF7F0;
+            background-image: radial-gradient(#F2D1D1 1px, transparent 1px), radial-gradient(#A0B296 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            opacity: 0.25;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C8B6A6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8D7B68;
+        }
+        /* Soft bounce animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+        .pulse-soft {
+            animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .85; transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-woodland-brown pb-16">
+    <!-- Particle canvas for falling cherry blossoms and leaves -->
+    <canvas id="canvas-particles" class="fixed top-0 left-0 w-full h-full pointer-events-none z-10"></canvas>
+    <div class="woodland-pattern"></div>
+
+    <!-- Whimsical Audio Synthesizer Controls (Floating Top-Right) -->
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-2 bg-white/95 backdrop-blur-sm border border-woodland-blush/60 px-4 py-2.5 rounded-full shadow-lg transition-all duration-300 hover:scale-105">
+        <button id="btn-music" class="flex items-center justify-center w-8 h-8 rounded-full bg-woodland-pink text-white hover:bg-woodland-darkpink transition-colors" title="Play cute woodland lullaby melody!">
+            <i id="music-icon" class="fas fa-play"></i>
+        </button>
+        <div class="flex flex-col text-[11px] leading-tight select-none">
+            <span class="font-bold text-woodland-brown">Woodland Lullaby</span>
+            <span id="music-status" class="text-woodland-darkgreen font-semibold">Click to play sound!</span>
+        </div>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5" class="w-16 accent-woodland-pink cursor-pointer h-1 rounded-lg">
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-20 max-w-6xl mx-auto px-4 pt-8 md:pt-16">
+        
+        <!-- ================= HERO SECTION / BOTH PANELS ================= -->
+        <main class="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden border-4 border-woodland-blush/40 flex flex-col md:flex-row">
+            
+            <!-- LEFT PANEL: Fully Animated Recreated SVG Art (The Invite Artwork!) -->
+            <section class="w-full md:w-1/2 bg-woodland-beige/40 p-6 md:p-10 flex items-center justify-center border-b-4 md:border-b-0 md:border-r-4 border-woodland-blush/30 relative select-none">
+                <div class="w-full max-w-[420px] aspect-[3/4] relative">
+                    <!-- Interactive SVG Recreating the invitation's gorgeous graphic details -->
+                    <svg viewBox="0 0 300 400" class="w-full h-full drop-shadow-md rounded-2xl" id="invite-svg" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#FAF7F0" />
+                                <stop offset="100%" stop-color="#F4EFE6" />
+                            </linearGradient>
+                            <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+                                <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-opacity="0.15"/>
+                            </filter>
+                        </defs>
+                        <!-- Background panel -->
+                        <rect width="300" height="400" rx="16" fill="url(#skyGrad)" stroke="#E29595" stroke-width="2" stroke-opacity="0.3"/>
+                        
+                        <!-- Top Hanging Leaves border -->
+                        <path d="M 0 0 C 40 20, 80 10, 120 25 C 160 10, 200 20, 240 5 C 270 15, 300 0, 300 0 L 300 0 L 0 0 Z" fill="#D5E0D5" opacity="0.8"/>
+                        <path d="M 10 0 C 15 15, 25 15, 30 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                        <path d="M 50 0 C 55 18, 65 18, 70 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                        <path d="M 110 0 C 115 15, 125 15, 130 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                        <path d="M 170 0 C 175 16, 185 16, 190 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                        <path d="M 230 0 C 235 15, 245 15, 250 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                        
+                        <!-- Mini hanging flowers -->
+                        <circle cx="20" cy="15" r="3" fill="#A0C3D2" opacity="0.8"/>
+                        <circle cx="60" cy="18" r="3" fill="#F2D1D1" opacity="0.8"/>
+                        <circle cx="120" cy="15" r="3.5" fill="#A0C3D2" opacity="0.8"/>
+                        <circle cx="180" cy="16" r="3" fill="#F2D1D1" opacity="0.8"/>
+                        <circle cx="240" cy="15" r="3.5" fill="#A0C3D2" opacity="0.8"/>
+
+                        <!-- Happy Glowing Sun -->
+                        <g id="svg-sun" class="cursor-pointer transition-transform duration-500 hover:scale-110 origin-[150px_45px]">
+                            <!-- Rays -->
+                            <path d="M 150 20 L 150 14 M 150 70 L 150 76 M 125 45 L 119 45 M 175 45 L 181 45 M 132 27 L 128 23 M 168 63 L 172 67 M 132 63 L 128 67 M 168 27 L 172 23" stroke="#D3A243" stroke-width="1.5" stroke-linecap="round"/>
+                            <!-- Sun Body -->
+                            <circle cx="150" cy="45" r="14" fill="#F4DFB9" stroke="#D3A243" stroke-width="1.5"/>
+                            <circle cx="150" cy="45" r="10" fill="#FFF2CC"/>
+                        </g>
+
+                        <!-- Cherry blossoms (Left & Right top) -->
+                        <!-- Left Top Pink Flower -->
+                        <g transform="translate(48, 65) scale(0.85)" class="cursor-pointer transition-transform duration-300 hover:rotate-12 origin-center">
+                            <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                            <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
+                        </g>
+                        <!-- Right Top Pink Flower -->
+                        <g transform="translate(252, 65) scale(0.85)" class="cursor-pointer transition-transform duration-300 hover:rotate-12 origin-center">
+                            <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                            <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
+                        </g>
+                        <!-- Smaller accent flowers -->
+                        <g transform="translate(108, 48) scale(0.55)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#A0C3D2" stroke="#8D7B68" stroke-width="1"/><circle cx="0" cy="0" r="3" fill="#FFF"/></g>
+                        <g transform="translate(192, 48) scale(0.55)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#A0C3D2" stroke="#8D7B68" stroke-width="1"/><circle cx="0" cy="0" r="3" fill="#FFF"/></g>
+
+                        <!-- Strawberries -->
+                        <!-- Strawberry Top Left -->
+                        <g transform="translate(26, 92) rotate(-15) scale(0.8)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
+                            <!-- Berry body -->
+                            <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                            <!-- Green cap -->
+                            <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                            <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                            <!-- Little seed dots -->
+                            <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                        </g>
+                        <!-- Strawberry Middle Left -->
+                        <g transform="translate(51, 138) rotate(15) scale(0.8)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
+                            <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                            <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                            <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                            <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                        </g>
+                        <!-- Strawberry Top Right -->
+                        <g transform="translate(274, 92) rotate(15) scale(0.8)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
+                            <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                            <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                            <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                            <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                        </g>
+                        <!-- Strawberry Middle Right -->
+                        <g transform="translate(249, 138) rotate(-15) scale(0.8)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
+                            <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                            <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                            <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                            <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                        </g>
+
+                        <!-- Sparkles and Dots -->
+                        <path d="M 62 105 L 62 101 M 62 105 L 62 109 M 62 105 L 58 105 M 62 105 L 66 105" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
+                        <path d="M 238 105 L 238 101 M 238 105 L 238 109 M 238 105 L 234 105 M 238 105 L 242 105" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
+                        <!-- Sunflowers (Yellow floral) -->
+                        <!-- Sunflower Middle Left -->
+                        <g transform="translate(32, 172) scale(0.95)" class="cursor-pointer transition-transform duration-300 hover:scale-110 origin-center">
+                            <!-- Petals -->
+                            <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                            <!-- Center seed grid -->
+                            <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
+                            <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
+                        </g>
+                        <!-- Sunflower Middle Right -->
+                        <g transform="translate(268, 172) scale(0.95)" class="cursor-pointer transition-transform duration-300 hover:scale-110 origin-center">
+                            <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                            <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
+                            <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
+                        </g>
+
+                        <!-- Mushrooms Left & Right middle -->
+                        <!-- Mushroom Left -->
+                        <g transform="translate(41, 222) scale(0.85)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
+                            <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
+                            <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                            <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
+                        </g>
+                        <!-- Mushroom Right -->
+                        <g transform="translate(259, 222) scale(0.85)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
+                            <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
+                            <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                            <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
+                        </g>
+
+                        <!-- THE GIANT SIGNATURE "1" -->
+                        <g id="big-number-one" class="cursor-pointer transition-transform duration-500 hover:scale-105 origin-center">
+                            <!-- Outlined Big Pink 1 with cozy retro design -->
+                            <path d="M 135 120 L 145 120 C 145 120, 150 114, 156 120 L 156 244 L 165 244 C 169 244, 169 252, 165 252 L 135 252 C 131 252, 131 244, 135 244 L 144 244 L 144 128 L 135 128 C 131 128, 131 120, 135 120 Z" 
+                                  fill="#F2D1D1" stroke="#8D7B68" stroke-width="2.5" stroke-linejoin="round" filter="url(#shadow)"/>
+                            <!-- Inner details line -->
+                            <path d="M 148 128 L 148 244" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        </g>
+
+                        <!-- Sparkles near center -->
+                        <path d="M 94 220 L 94 216 M 94 220 L 94 224 M 94 220 L 90 220 M 94 220 L 98 220" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
+                        <path d="M 206 220 L 206 216 M 206 220 L 206 224 M 206 220 L 202 220 M 206 220 L 210 220" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
+
+                        <!-- Flower Clusters Bottom Left & Right -->
+                        <g transform="translate(28, 245) scale(0.95)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3.5" fill="#FAF7F0" stroke="#8D7B68" stroke-width="0.7"/></g>
+                        <g transform="translate(272, 245) scale(0.95)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3.5" fill="#FAF7F0" stroke="#8D7B68" stroke-width="0.7"/></g>
+
+                        <g transform="translate(54, 255) scale(0.7)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#FFF" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/></g>
+                        <g transform="translate(246, 255) scale(0.7)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#FFF" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/></g>
+
+                        <!-- Ginkgo Biloba Leaves -->
+                        <path d="M 90 270 Q 98 268, 102 276 C 96 280, 88 276, 90 270 Z" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                        <path d="M 100 274 L 105 281" stroke="#8D7B68" stroke-width="1"/>
+
+                        <path d="M 210 270 Q 202 268, 198 276 C 204 280, 212 276, 210 270 Z" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                        <path d="M 200 274 L 195 281" stroke="#8D7B68" stroke-width="1"/>
+
+                        <!-- Bottom Field Flowers and Grasses -->
+                        <g transform="translate(150, 410)">
+                            <!-- Weaving blades of grass -->
+                            <path d="M -120 -10 Q -90 -60, -110 -100 Q -105 -100, -118 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+                            <path d="M -90 -10 Q -70 -70, -80 -105 Q -75 -105, -88 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+                            
+                            <path d="M 120 -10 Q 90 -60, 110 -100 Q 105 -100, 118 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+                            <path d="M 90 -10 Q 70 -70, 80 -105 Q 75 -105, 88 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+
+                            <!-- Center Wildflowers -->
+                            <path d="M -40 -10 Q -20 -50, -30 -90 Q -25 -90, -38 -10" fill="none" stroke="#798777" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M 40 -10 Q 20 -50, 30 -90 Q 25 -90, 38 -10" fill="none" stroke="#798777" stroke-width="1.5" stroke-linecap="round"/>
+                            
+                            <!-- Little yellow buds on stalks -->
+                            <circle cx="-30" cy="-90" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+                            <circle cx="-25" cy="-75" r="2.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+                            <circle cx="30" cy="-90" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+                            <circle cx="25" cy="-75" r="2.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+
+                            <!-- Big Main Pink Bellflower at center bottom -->
+                            <g transform="translate(0, -50)" class="cursor-pointer transition-transform duration-300 hover:scale-110 origin-center">
+                                <path d="M 0 -15 Q -15 -35, 0 -50 Q 15 -35, 0 -15" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                                <path d="M -15 -35 C -5 -35, -5 -45, 0 -50 C 5 -45, 5 -35, 15 -35 C 10 -25, -10 -25, -15 -35 Z" fill="#F2D1D1" stroke="#8D7B68" stroke-width="1"/>
+                                <circle cx="0" cy="-35" r="4" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1"/>
+                            </g>
+                        </g>
+                    </svg>
+
+                    <!-- Magical Interactive Prompt Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        <span class="bg-white/90 border border-woodland-blush/80 px-4 py-2 rounded-full text-xs font-bold text-woodland-pink shadow-md flex items-center gap-1.5 animate-bounce">
+                            <i class="fas fa-magic"></i> Hover elements to interact!
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT PANEL: Invitation Text & Quick Details -->
+            <section class="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-between relative bg-white">
+                <div class="text-center md:text-left">
+                    <!-- Title Area -->
+                    <div class="space-y-1">
+                        <h1 class="font-display text-4xl sm:text-5xl md:text-5xl font-bold text-woodland-brown drop-shadow-sm tracking-wide leading-tight">
+                            Olivia Marie's
+                        </h1>
+                        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink tracking-wider">
+                            TURNING ONE!
+                        </h2>
+                    </div>
+
+                    <!-- Decorative Cherry Blossoms -->
+                    <div class="flex items-center justify-center md:justify-start gap-2.5 my-4">
+                        <i class="fas fa-spa text-woodland-pink text-lg floating-element" style="animation-delay: 0.2s"></i>
+                        <i class="fas fa-spa text-woodland-pink text-xs floating-element" style="animation-delay: 0.5s"></i>
+                        <i class="fas fa-spa text-woodland-pink text-sm floating-element" style="animation-delay: 0.8s"></i>
+                    </div>
+
+                    <!-- Invitation Warm Body -->
+                    <p class="font-medium text-woodland-brown/85 text-base sm:text-lg italic max-w-md">
+                        Please join us for a whimsical, woodland-themed birthday celebration as we toast Olivia's very first magical year!
+                    </p>
+
+                    <!-- Key details List -->
+                    <div class="mt-8 space-y-4 max-w-md mx-auto md:mx-0">
+                        <!-- Date -->
+                        <div class="flex items-center gap-4 p-3 bg-woodland-cream/60 hover:bg-woodland-cream border border-woodland-blush/20 rounded-2xl transition-all duration-300">
+                            <div class="w-12 h-12 rounded-xl bg-woodland-pink/15 flex items-center justify-center text-woodland-pink text-lg shrink-0">
+                                <i class="far fa-calendar-alt"></i>
+                            </div>
+                            <div class="text-left">
+                                <span class="block text-xs font-bold text-woodland-darkgreen uppercase tracking-wider">Date</span>
+                                <span class="font-bold text-woodland-brown text-base">Saturday, 11 July 2026</span>
+                            </div>
+                        </div>
+
+                        <!-- Time -->
+                        <div class="flex items-center gap-4 p-3 bg-woodland-cream/60 hover:bg-woodland-cream border border-woodland-blush/20 rounded-2xl transition-all duration-300">
+                            <div class="w-12 h-12 rounded-xl bg-woodland-pink/15 flex items-center justify-center text-woodland-pink text-lg shrink-0">
+                                <i class="far fa-clock"></i>
+                            </div>
+                            <div class="text-left">
+                                <span class="block text-xs font-bold text-woodland-darkgreen uppercase tracking-wider">Time</span>
+                                <span class="font-bold text-woodland-brown text-base">11:00 AM until 2:00 PM</span>
+                            </div>
+                        </div>
+
+                        <!-- Venue -->
+                        <div class="flex items-center gap-4 p-3 bg-woodland-cream/60 hover:bg-woodland-cream border border-woodland-blush/20 rounded-2xl transition-all duration-300">
+                            <div class="w-12 h-12 rounded-xl bg-woodland-pink/15 flex items-center justify-center text-woodland-pink text-lg shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="text-left w-full">
+                                <span class="block text-xs font-bold text-woodland-darkgreen uppercase tracking-wider">Venue</span>
+                                <span class="font-bold text-woodland-brown text-base block">Rancho IV West Clubhouse</span>
+                                <span class="text-xs text-woodland-brown/80">Marikina City, Metro Manila</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Separator Icons (Mushroom, Acorn, Mushroom) -->
+                    <div class="flex items-center justify-center md:justify-start gap-4 my-6 py-1">
+                        <i class="fas fa-mushroom text-woodland-pink text-base floating-element" style="animation-delay: 0.1s">⚡</i>
+                        <span class="text-woodland-pink/40 text-sm">✦</span>
+                        <i class="fas fa-seedling text-woodland-darkgreen text-base floating-element" style="animation-delay: 0.4s">🍂</i>
+                        <span class="text-woodland-pink/40 text-sm">✦</span>
+                        <i class="fas fa-mushroom text-woodland-pink text-base floating-element" style="animation-delay: 0.7s">⚡</i>
+                    </div>
+
+                    <!-- RSVP Quick Summary Info -->
+                    <div class="bg-woodland-beige/40 rounded-2xl p-4 border border-woodland-blush/30 text-left max-w-md">
+                        <div class="flex justify-between items-center text-xs font-bold text-woodland-brown/70 mb-1">
+                            <span>RSVP DEADLINE</span>
+                            <span class="text-woodland-pink font-extrabold bg-white px-2 py-0.5 rounded-full border border-woodland-blush/30">11 June 2026</span>
+                        </div>
+                        <p class="text-xs text-woodland-brown/80">
+                            Please notify our lovely hosts <span class="font-bold text-woodland-brown">JC</span> or <span class="font-bold text-woodland-brown">Camille</span> to secure your spot in the magical woods!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Button row -->
+                <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                    <a href="#section-rsvp" class="flex-1 text-center bg-woodland-pink hover:bg-woodland-darkpink text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane"></i> RSVP Online Now
+                    </a>
+                    <button id="btn-calendar" class="bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2" title="Add event to calendar">
+                        <i class="far fa-calendar-plus"></i> Add to Calendar
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- ================= LIVE COUNTDOWN TIMER ================= -->
+        <section class="mt-8 bg-white/85 backdrop-blur-md rounded-2xl p-6 border-2 border-woodland-blush/20 shadow-xl relative overflow-hidden text-center">
+            <div class="absolute top-0 left-0 w-2 h-full bg-woodland-pink"></div>
+            <div class="absolute top-0 right-0 w-2 h-full bg-woodland-pink"></div>
+            <h3 class="font-display text-lg font-bold text-woodland-darkgreen uppercase tracking-widest mb-4 flex items-center justify-center gap-2">
+                <span>🌸</span> Counting down to the big day! <span>🌸</span>
+            </h3>
+            <div class="grid grid-cols-4 gap-2 max-w-lg mx-auto">
+                <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl p-3 sm:p-4">
+                    <span id="countdown-days" class="block font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink">00</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-woodland-brown uppercase tracking-wider">Days</span>
+                </div>
+                <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl p-3 sm:p-4">
+                    <span id="countdown-hours" class="block font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink">00</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-woodland-brown uppercase tracking-wider">Hours</span>
+                </div>
+                <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl p-3 sm:p-4">
+                    <span id="countdown-minutes" class="block font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink">00</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-woodland-brown uppercase tracking-wider">Min</span>
+                </div>
+                <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl p-3 sm:p-4">
+                    <span id="countdown-seconds" class="block font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink">00</span>
+                    <span class="text-[10px] sm:text-xs font-bold text-woodland-brown uppercase tracking-wider">Sec</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= VENUE MAP & DIRECTIONS HELPER ================= -->
+        <section class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl flex flex-col justify-between">
+                <div>
+                    <span class="inline-block bg-woodland-green/15 text-woodland-darkgreen font-bold text-xs px-3 py-1 rounded-full mb-3 uppercase tracking-wider">The Forest Gathering</span>
+                    <h3 class="font-display text-2xl font-bold text-woodland-brown mb-4">Rancho IV West Clubhouse</h3>
+                    <p class="text-sm text-woodland-brown/85 leading-relaxed mb-6">
+                        Located nestled in beautiful Marikina City, the clubhouse is highly accessible. Guests coming by private car can find ample, secure street parking inside the subdivision gate.
+                    </p>
+                    
+                    <div class="space-y-3.5 bg-woodland-cream/50 p-4 rounded-2xl border border-woodland-blush/10">
+                        <div class="flex items-start gap-3 text-xs text-woodland-brown/95">
+                            <i class="fas fa-info-circle text-woodland-pink mt-0.5 text-sm shrink-0"></i>
+                            <span>Please present this online digital invitation or mention "Olivia's Birthday" at the subdivision guard gate for quick security pass.</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-xs text-woodland-brown/95">
+                            <i class="fas fa-tshirt text-woodland-darkgreen mt-0.5 text-sm shrink-0"></i>
+                            <span>Dress Code hint: Pastel, woodland, cottagecore, or light floral outfits are highly encouraged! 🌸🍂</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-woodland-blush/10 flex flex-wrap gap-3">
+                    <button onclick="copyToClipboard('Rancho IV West Clubhouse, Marikina City')" class="bg-woodland-cream hover:bg-woodland-beige text-woodland-brown border border-woodland-lightbrown font-bold py-2.5 px-4 rounded-xl text-xs transition-colors flex items-center gap-2">
+                        <i class="far fa-copy"></i> Copy Address
+                    </button>
+                    <a href="https://maps.google.com/?q=Rancho+IV+West+Clubhouse+Marikina+City" target="_blank" class="bg-woodland-pink hover:bg-woodland-darkpink text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors flex items-center gap-2 shadow">
+                        <i class="fas fa-route"></i> Open in Google Maps
+                    </a>
+                </div>
+            </div>
+
+            <!-- Custom Mock Stylized interactive Map -->
+            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-4 border-2 border-woodland-blush/20 shadow-xl relative overflow-hidden min-h-[300px] flex flex-col">
+                <div class="absolute inset-0 bg-woodland-beige/20 flex flex-col items-center justify-center p-4 text-center z-10" id="map-cover">
+                    <!-- Custom Cozy Map Graphics & Pin -->
+                    <div class="relative mb-4 cursor-pointer transition-transform duration-300 hover:scale-110" onclick="revealMap()">
+                        <div class="w-16 h-16 rounded-full bg-woodland-pink/20 flex items-center justify-center pulse-soft">
+                            <i class="fas fa-map-marked-alt text-woodland-pink text-3xl"></i>
+                        </div>
+                        <div class="absolute -top-1 -right-1 bg-woodland-green text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">LIVE</div>
+                    </div>
+                    <h4 class="font-display font-bold text-base text-woodland-brown">Interactive Map Preview</h4>
+                    <p class="text-xs text-woodland-brown/85 max-w-xs mt-1">Click to render the interactive community map directions.</p>
+                    <button onclick="revealMap()" class="mt-4 bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-2 px-4 rounded-lg text-xs transition-colors">
+                        Load Map View
+                    </button>
+                </div>
+                <!-- Embedded Leaflet/OSM Frame that lazy-loads to save energy -->
+                <iframe id="map-iframe" class="w-full h-full rounded-2xl border-0 hidden" src="" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- ================= MILESTONE GALLERY / PHOTO FRAME ================= -->
+        <section class="mt-16">
+            <div class="text-center mb-10">
+                <h3 class="font-display text-3xl font-extrabold text-woodland-brown">Memory Lane</h3>
+                <p class="text-sm text-woodland-darkgreen font-semibold mt-1">A few cozy milestones from Olivia Marie's beautiful first year</p>
+                <div class="w-12 h-1 bg-woodland-pink mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Polaroid Card 1 -->
+                <div class="bg-white p-4 rounded-xl shadow-lg border border-woodland-blush/10 transform rotate-1 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                    <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative flex items-center justify-center border border-woodland-blush/10">
+                        <!-- Custom Vector Art representing New Born -->
+                        <svg viewBox="0 0 100 100" class="w-24 h-24 opacity-80">
+                            <circle cx="50" cy="50" r="40" fill="#F4DFB9" opacity="0.4"/>
+                            <path d="M 50 35 C 40 35, 35 45, 50 65 C 65 45, 60 35, 50 35 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.5"/>
+                            <circle cx="50" cy="45" r="3" fill="#FFF"/>
+                        </svg>
+                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">JULY 2025</div>
+                    </div>
+                    <div class="mt-4 text-center font-display text-woodland-brown">
+                        <span class="block text-xs font-bold uppercase text-woodland-darkgreen">Month 1</span>
+                        <span class="font-bold text-sm">Hello, World! ✨</span>
+                        <p class="text-[11px] text-woodland-brown/80 mt-1 leading-relaxed">Sweet baby Olivia made her grand entrance into our hearts.</p>
+                    </div>
+                </div>
+
+                <!-- Polaroid Card 2 -->
+                <div class="bg-white p-4 rounded-xl shadow-lg border border-woodland-blush/10 transform -rotate-1 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                    <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative flex items-center justify-center border border-woodland-blush/10">
+                        <!-- Custom Vector Art representing Smile -->
+                        <svg viewBox="0 0 100 100" class="w-24 h-24 opacity-80">
+                            <circle cx="50" cy="50" r="40" fill="#A0C3D2" opacity="0.4"/>
+                            <circle cx="50" cy="48" r="18" fill="#FFF" stroke="#8D7B68" stroke-width="1.5"/>
+                            <circle cx="44" cy="44" r="2" fill="#8D7B68"/>
+                            <circle cx="56" cy="44" r="2" fill="#8D7B68"/>
+                            <path d="M 44 50 Q 50 56, 56 50" fill="none" stroke="#8D7B68" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">OCT 2025</div>
+                    </div>
+                    <div class="mt-4 text-center font-display text-woodland-brown">
+                        <span class="block text-xs font-bold uppercase text-woodland-darkgreen">Month 4</span>
+                        <span class="font-bold text-sm">First Sweet Smiles 😊</span>
+                        <p class="text-[11px] text-woodland-brown/80 mt-1 leading-relaxed">Giggling and lighting up the whole room with her charming gaze.</p>
+                    </div>
+                </div>
+
+                <!-- Polaroid Card 3 -->
+                <div class="bg-white p-4 rounded-xl shadow-lg border border-woodland-blush/10 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                    <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative flex items-center justify-center border border-woodland-blush/10">
+                        <!-- Custom Vector Art representing Crawling/Standing -->
+                        <svg viewBox="0 0 100 100" class="w-24 h-24 opacity-80">
+                            <circle cx="50" cy="50" r="40" fill="#FAF7F0" opacity="0.4"/>
+                            <path d="M 30 65 L 45 45 L 70 45" stroke="#8D7B68" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <circle cx="45" cy="32" r="8" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1.5"/>
+                        </svg>
+                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">FEB 2026</div>
+                    </div>
+                    <div class="mt-4 text-center font-display text-woodland-brown">
+                        <span class="block text-xs font-bold uppercase text-woodland-darkgreen">Month 8</span>
+                        <span class="font-bold text-sm">On The Move! 👶</span>
+                        <p class="text-[11px] text-woodland-brown/80 mt-1 leading-relaxed">No toy is safe! Crawling like a little champion racer.</p>
+                    </div>
+                </div>
+
+                <!-- Polaroid Card 4 -->
+                <div class="bg-white p-4 rounded-xl shadow-lg border border-woodland-blush/10 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                    <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative flex items-center justify-center border border-woodland-blush/10">
+                        <!-- Custom Vector Art representing First Tooth -->
+                        <svg viewBox="0 0 100 100" class="w-24 h-24 opacity-80">
+                            <circle cx="50" cy="50" r="40" fill="#E29595" opacity="0.3"/>
+                            <path d="M 35 35 L 65 35 L 60 65 C 58 75, 52 75, 50 65 C 48 75, 42 75, 40 65 Z" fill="#FFF" stroke="#8D7B68" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">MAY 2026</div>
+                    </div>
+                    <div class="mt-4 text-center font-display text-woodland-brown">
+                        <span class="block text-xs font-bold uppercase text-woodland-darkgreen">Month 11</span>
+                        <span class="font-bold text-sm">First Two Teeth! 🦷</span>
+                        <p class="text-[11px] text-woodland-brown/80 mt-1 leading-relaxed">Two tiny pearly whites showing up just in time for cake!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= INTERACTIVE GIFT WISHLIST ================= -->
+        <section class="mt-16 bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl">
+            <div class="text-center max-w-lg mx-auto mb-8">
+                <span class="text-woodland-pink font-bold text-xs uppercase tracking-wider block">GIFT REGISTRY IDEAS</span>
+                <h3 class="font-display text-2xl font-bold text-woodland-brown">Olivia's Whimsical Wishlist</h3>
+                <p class="text-xs text-woodland-brown/85 mt-1">Your presence is our absolute biggest gift! If you wish to bring a token of love, here are categories she would adore.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="wishlist-container">
+                <!-- Gift Item 1 -->
+                <div class="bg-woodland-cream/40 border border-woodland-blush/20 rounded-2xl p-4 flex items-center justify-between hover:bg-woodland-cream transition-colors group" id="gift-1">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-woodland-yellow/30 flex items-center justify-center text-woodland-brown text-base">
+                            🧱
+                        </div>
+                        <div class="text-left">
+                            <span class="font-bold text-sm text-woodland-brown block">Wooden Blocks / Toys</span>
+                            <span class="text-[10px] text-woodland-darkgreen font-semibold">Cottagecore aesthetics</span>
+                        </div>
+                    </div>
+                    <button onclick="claimGift(1)" class="bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm group-hover:scale-105" id="btn-gift-1">
+                        Claim Idea
+                    </button>
+                </div>
+
+                <!-- Gift Item 2 -->
+                <div class="bg-woodland-cream/40 border border-woodland-blush/20 rounded-2xl p-4 flex items-center justify-between hover:bg-woodland-cream transition-colors group" id="gift-2">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-woodland-pink/20 flex items-center justify-center text-woodland-pink text-base">
+                            📚
+                        </div>
+                        <div class="text-left">
+                            <span class="font-bold text-sm text-woodland-brown block">Picture Storybooks</span>
+                            <span class="text-[10px] text-woodland-darkgreen font-semibold">Classic animal tales</span>
+                        </div>
+                    </div>
+                    <button onclick="claimGift(2)" class="bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm group-hover:scale-105" id="btn-gift-2">
+                        Claim Idea
+                    </button>
+                </div>
+
+                <!-- Gift Item 3 -->
+                <div class="bg-woodland-cream/40 border border-woodland-blush/20 rounded-2xl p-4 flex items-center justify-between hover:bg-woodland-cream transition-colors group" id="gift-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-woodland-green/20 flex items-center justify-center text-woodland-darkgreen text-base">
+                            👗
+                        </div>
+                        <div class="text-left">
+                            <span class="font-bold text-sm text-woodland-brown block">Pastel Clothes (12-18m)</span>
+                            <span class="text-[10px] text-woodland-darkgreen font-semibold">Soft cotton floral sets</span>
+                        </div>
+                    </div>
+                    <button onclick="claimGift(3)" class="bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm group-hover:scale-105" id="btn-gift-3">
+                        Claim Idea
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= RSVP FORM & LIVE GUESTBOARD ================= -->
+        <section id="section-rsvp" class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Form Block -->
+            <div class="lg:col-span-5 bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl">
+                <div class="mb-6">
+                    <h3 class="font-display text-2xl font-bold text-woodland-brown">Send Your RSVP</h3>
+                    <p class="text-xs text-woodland-darkgreen font-semibold mt-1">Please confirm by 11 June 2026</p>
+                    <div class="w-10 h-0.5 bg-woodland-pink mt-2"></div>
+                </div>
+
+                <form id="rsvp-form" onsubmit="handleRSVPSubmit(event)" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Your Full Name</label>
+                        <input type="text" id="form-name" required placeholder="e.g. Aunt Sally" class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink focus:ring-2 focus:ring-woodland-pink/15 rounded-xl px-4 py-3 text-sm transition-all outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Attendance</label>
+                            <select id="form-status" class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink rounded-xl px-3 py-3 text-xs font-semibold transition-all outline-none">
+                                <option value="yes">Joyfully Attending</option>
+                                <option value="no">Regretfully Declining</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Total Guests</label>
+                            <select id="form-guests" class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink rounded-xl px-3 py-3 text-xs font-semibold transition-all outline-none">
+                                <option value="1">1 person</option>
+                                <option value="2">2 people</option>
+                                <option value="3">3 people</option>
+                                <option value="4">4 people</option>
+                                <option value="5+">5+ people</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Dietary Preferences</label>
+                        <input type="text" id="form-diet" placeholder="None / Vegetarian / Allergies" class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink rounded-xl px-4 py-3 text-xs transition-all outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Sweet Message for Olivia</label>
+                        <textarea id="form-message" rows="3" placeholder="Write a warm wish or birthday note..." class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink rounded-xl px-4 py-3 text-xs transition-all outline-none resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-woodland-pink hover:bg-woodland-darkpink text-white font-bold py-3 px-6 rounded-xl text-sm transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-md">
+                        <i class="fas fa-heart"></i> Submit RSVP Info
+                    </button>
+                </form>
+            </div>
+
+            <!-- Live Message Wall/Board -->
+            <div class="lg:col-span-7 bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl flex flex-col justify-between h-full min-h-[460px]">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-display text-2xl font-bold text-woodland-brown">Woodland Message Wall</h3>
+                        <span id="rsvp-count" class="bg-woodland-green/15 text-woodland-darkgreen font-bold text-[11px] px-3 py-1 rounded-full border border-woodland-green/30">0 RSVPs posted</span>
+                    </div>
+                    <div class="w-10 h-0.5 bg-woodland-pink mb-4"></div>
+                </div>
+
+                <!-- Custom Sticky Notes Container -->
+                <div class="flex-1 overflow-y-auto max-h-[350px] pr-2 space-y-4" id="guestbook-wall">
+                    <!-- Default Cozy Fallback Message if guestbook is empty -->
+                    <div id="guestbook-empty" class="h-full flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 rounded-full bg-woodland-cream flex items-center justify-center mb-3">
+                            <i class="far fa-envelope-open text-woodland-pink/40 text-2xl"></i>
+                        </div>
+                        <h4 class="font-display font-bold text-sm text-woodland-brown">No Messages Yet</h4>
+                        <p class="text-[11px] text-woodland-brown/85 max-w-xs mt-1">Be the very first guest to send an online RSVP message to appear here on the woodland wall!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ================= MODERN MODAL COMPONENT (Custom Dialog alerts replacement) ================= -->
+    <div id="custom-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center border-4 border-woodland-blush/30 shadow-2xl transform scale-95 transition-all duration-300" id="modal-container">
+            <div class="w-16 h-16 rounded-full bg-woodland-green/20 text-woodland-darkgreen flex items-center justify-center mx-auto mb-4" id="modal-icon-bg">
+                <i class="fas fa-check text-2xl" id="modal-icon"></i>
+            </div>
+            <h4 class="font-display text-xl font-bold text-woodland-brown mb-2" id="modal-title">Success</h4>
+            <p class="text-xs text-woodland-brown/85 leading-relaxed mb-6" id="modal-body">Your actions were processed successfully!</p>
+            <button onclick="closeModal()" class="bg-woodland-pink hover:bg-woodland-darkpink text-white font-bold py-2.5 px-6 rounded-xl text-xs transition-colors shadow">
+                Wonderful!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Set the event date for Olivia Marie's 1st Birthday Invite
+        const eventDate = new Date("July 11, 2026 11:00:00").getTime();
+
+        // ------------------ COUNTDOWN TIMER ------------------
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown-days").innerText = "00";
+                document.getElementById("countdown-hours").innerText = "00";
+                document.getElementById("countdown-minutes").innerText = "00";
+                document.getElementById("countdown-seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown-days").innerText = String(days).padStart(2, '0');
+            document.getElementById("countdown-hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("countdown-minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("countdown-seconds").innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ------------------ LOCAL STATE / MOCK DATA ------------------
+        let claimedGifts = JSON.parse(localStorage.getItem('olivia_gifts')) || {};
+        let rsvpGuestList = JSON.parse(localStorage.getItem('olivia_rsvp_list')) || [
+            { name: "Aunt Sally", status: "yes", guests: "2", diet: "Nut Allergy", message: "Can't wait to see sweet Olivia turn one! Sending so much love!" },
+            { name: "Cousin Liam", status: "yes", guests: "1", diet: "None", message: "Excited for the birthday cake and games! 🌸" }
+        ];
+
+        // ------------------ RSVP SUBMISSION ------------------
+        function handleRSVPSubmit(event) {
+            event.preventDefault();
+            const nameVal = document.getElementById("form-name").value.trim();
+            const statusVal = document.getElementById("form-status").value;
+            const guestsVal = document.getElementById("form-guests").value;
+            const dietVal = document.getElementById("form-diet").value.trim() || "None";
+            const messageVal = document.getElementById("form-message").value.trim() || "So excited! 🌸";
+
+            if (!nameVal) return;
+
+            // Save to internal state
+            const rsvpItem = { name: nameVal, status: statusVal, guests: guestsVal, diet: dietVal, message: messageVal };
+            rsvpGuestList.unshift(rsvpItem); // Add new to top
+            localStorage.setItem('olivia_rsvp_list', JSON.stringify(rsvpGuestList));
+
+            // Reset form
+            document.getElementById("rsvp-form").reset();
+
+            // Refresh UI
+            renderGuestbook();
+
+            // Show beautiful Success Modal
+            showModal(
+                "Thank You so Much!",
+                `We have received your RSVP confirmation, ${nameVal}! Looking forward to a wonderful woodland celebration.`,
+                "success"
+            );
+        }
+
+        function renderGuestbook() {
+            const container = document.getElementById("guestbook-wall");
+            const countLabel = document.getElementById("rsvp-count");
+            
+            if (rsvpGuestList.length === 0) {
+                document.getElementById("guestbook-empty").classList.remove("hidden");
+                countLabel.innerText = "0 RSVPs posted";
+                return;
+            }
+
+            document.getElementById("guestbook-empty").classList.add("hidden");
+            
+            // Clean older children except empty fallback
+            const children = Array.from(container.children);
+            children.forEach(c => {
+                if (c.id !== "guestbook-empty") c.remove();
+            });
+
+            // Count total attending guests
+            let totalAttending = 0;
+            rsvpGuestList.forEach(g => {
+                if (g.status === 'yes') {
+                    const count = g.guests === '5+' ? 5 : parseInt(g.guests);
+                    totalAttending += count;
+                }
+            });
+            countLabel.innerText = `${rsvpGuestList.length} RSVPs (${totalAttending} guests attending)`;
+
+            rsvpGuestList.forEach(rsvp => {
+                const note = document.createElement("div");
+                note.className = "p-4 rounded-2xl border transition-all duration-300 bg-white/50 border-woodland-blush/20 relative shadow-sm hover:scale-[1.01]";
+                
+                const statusColor = rsvp.status === 'yes' ? 'text-woodland-darkgreen bg-woodland-green/10' : 'text-woodland-darkpink bg-woodland-blush/20';
+                const statusText = rsvp.status === 'yes' ? 'Joyfully Attending' : 'Regretfully Declining';
+
+                note.innerHTML = `
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-display font-extrabold text-sm text-woodland-brown">${escapeHtml(rsvp.name)}</span>
+                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full ${statusColor}">${statusText} (${rsvp.guests})</span>
+                    </div>
+                    <p class="text-xs text-woodland-brown/90 italic mb-2 leading-relaxed">"${escapeHtml(rsvp.message)}"</p>
+                    <div class="flex items-center justify-between text-[10px] text-woodland-brown/70 pt-2 border-t border-woodland-blush/10">
+                        <span>Dietary: <strong class="text-woodland-darkgreen">${escapeHtml(rsvp.diet)}</strong></span>
+                        <span class="opacity-50">Just now</span>
+                    </div>
+                `;
+                container.appendChild(note);
+            });
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // ------------------ WISHLIST FUNCTIONALITY ------------------
+        function claimGift(id) {
+            if (claimedGifts[id]) {
+                // Unclaim
+                delete claimedGifts[id];
+                localStorage.setItem('olivia_gifts', JSON.stringify(claimedGifts));
+                updateWishlistUI(id, false);
+                showModal("Item Unclaimed", "This category has been marked back as open so other guests can check it.", "info");
+            } else {
+                // Claim
+                claimedGifts[id] = true;
+                localStorage.setItem('olivia_gifts', JSON.stringify(claimedGifts));
+                updateWishlistUI(id, true);
+                showModal("Thank You!", "This category has been marked as claimed on your device to coordinate gift selections.", "success");
+            }
+        }
+
+        function updateWishlistUI(id, isClaimed) {
+            const btn = document.getElementById(`btn-gift-${id}`);
+            const card = document.getElementById(`gift-${id}`);
+            if (isClaimed) {
+                btn.innerHTML = `<i class="fas fa-check"></i> Claimed`;
+                btn.className = "bg-woodland-brown text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm";
+                card.classList.add("opacity-75");
+            } else {
+                btn.innerHTML = "Claim Idea";
+                btn.className = "bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm group-hover:scale-105";
+                card.classList.remove("opacity-75");
+            }
+        }
+
+        function initWishlist() {
+            Object.keys(claimedGifts).forEach(id => {
+                updateWishlistUI(id, true);
+            });
+        }
+
+        // ------------------ COZY MUSIC BOX SYNTHESIZER (Web Audio API) ------------------
+        let audioCtx = null;
+        let isPlaying = false;
+        let melodyTimeout = null;
+        let tempo = 180; // BPM
+
+        // Beautiful Lullaby Melody (Twinkle Twinkle Little Star / Children Theme)
+        const notes = [
+            { note: "C5", duration: 1 }, { note: "C5", duration: 1 },
+            { note: "G5", duration: 1 }, { note: "G5", duration: 1 },
+            { note: "A5", duration: 1 }, { note: "A5", duration: 1 },
+            { note: "G5", duration: 2 },
+            { note: "F5", duration: 1 }, { note: "F5", duration: 1 },
+            { note: "E5", duration: 1 }, { note: "E5", duration: 1 },
+            { note: "D5", duration: 1 }, { note: "D5", duration: 1 },
+            { note: "C5", duration: 2 },
+            
+            { note: "G5", duration: 1 }, { note: "G5", duration: 1 },
+            { note: "F5", duration: 1 }, { note: "F5", duration: 1 },
+            { note: "E5", duration: 1 }, { note: "E5", duration: 1 },
+            { note: "D5", duration: 2 },
+            { note: "G5", duration: 1 }, { note: "G5", duration: 1 },
+            { note: "F5", duration: 1 }, { note: "F5", duration: 1 },
+            { note: "E5", duration: 1 }, { note: "E5", duration: 1 },
+            { note: "D5", duration: 2 },
+        ];
+
+        const frequencies = {
+            "C5": 523.25, "D5": 587.33, "E5": 659.25, "F5": 698.46,
+            "G5": 783.99, "A5": 880.00, "B5": 987.77
+        };
+
+        let currentNoteIndex = 0;
+
+        function toggleMusic() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (isPlaying) {
+                stopMusic();
+            } else {
+                startMusic();
+            }
+        }
+
+        function startMusic() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            isPlaying = true;
+            document.getElementById("music-icon").className = "fas fa-pause animate-spin-slow";
+            document.getElementById("music-status").innerText = "Playing melody...";
+            currentNoteIndex = 0;
+            playNextNote();
+        }
+
+        function stopMusic() {
+            isPlaying = false;
+            document.getElementById("music-icon").className = "fas fa-play";
+            document.getElementById("music-status").innerText = "Sound paused.";
+            if (melodyTimeout) clearTimeout(melodyTimeout);
+        }
+
+        function playNextNote() {
+            if (!isPlaying) return;
+
+            const entry = notes[currentNoteIndex];
+            const volume = parseFloat(document.getElementById("volume-slider").value);
+            
+            // Play physical sound using sine oscillator to mimic music box
+            if (frequencies[entry.note] && volume > 0) {
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                osc.type = "sine";
+                osc.frequency.setValueAtTime(frequencies[entry.note], audioCtx.currentTime);
+                
+                // Classic music box amplitude decay
+                gainNode.gain.setValueAtTime(volume * 0.4, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (entry.duration * (60 / tempo) * 0.9));
+
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + (entry.duration * (60 / tempo)));
+            }
+
+            const durationInMs = entry.duration * (60 / tempo) * 1000;
+            currentNoteIndex = (currentNoteIndex + 1) % notes.length;
+
+            melodyTimeout = setTimeout(playNextNote, durationInMs);
+        }
+
+        document.getElementById("btn-music").addEventListener("click", toggleMusic);
+
+        // ------------------ CUSTOM MODALS ------------------
+        function showModal(title, text, type) {
+            const modal = document.getElementById("custom-modal");
+            const container = document.getElementById("modal-container");
+            const modalTitle = document.getElementById("modal-title");
+            const modalBody = document.getElementById("modal-body");
+            const iconBg = document.getElementById("modal-icon-bg");
+            const icon = document.getElementById("modal-icon");
+
+            modalTitle.innerText = title;
+            modalBody.innerText = text;
+
+            if (type === 'success') {
+                iconBg.className = "w-16 h-16 rounded-full bg-woodland-green/20 text-woodland-darkgreen flex items-center justify-center mx-auto mb-4";
+                icon.className = "fas fa-check text-2xl";
+            } else if (type === 'info') {
+                iconBg.className = "w-16 h-16 rounded-full bg-woodland-yellow/35 text-woodland-brown flex items-center justify-center mx-auto mb-4";
+                icon.className = "fas fa-info text-2xl";
+            }
+
+            modal.classList.remove("opacity-0", "pointer-events-none");
+            container.classList.remove("scale-95");
+            container.classList.add("scale-100");
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("custom-modal");
+            const container = document.getElementById("modal-container");
+            modal.classList.add("opacity-0", "pointer-events-none");
+            container.classList.remove("scale-100");
+            container.classList.add("scale-95");
+        }
+
+        // ------------------ CLIPBOARD HELPER ------------------
+        function copyToClipboard(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showModal("Address Copied!", "The venue address has been copied to your clipboard. You can paste it into any navigation app!", "success");
+        }
+
+        // ------------------ MAP LAZY REVEAL ------------------
+        function revealMap() {
+            const mapCover = document.getElementById("map-cover");
+            const iframe = document.getElementById("map-iframe");
+            
+            // Switch view
+            mapCover.classList.add("hidden");
+            iframe.classList.remove("hidden");
+            
+            // Load openstreetmap coordinates for Marikina / Rancho 
+            iframe.src = "https://www.openstreetmap.org/export/embed.html?bbox=121.1000%2C14.6300%2C121.1300%2C14.6500&layer=mapnik&marker=14.6385%2C121.1158";
+        }
+
+        // ------------------ ADD TO CALENDAR HELPER ------------------
+        document.getElementById("btn-calendar").addEventListener("click", () => {
+            const title = encodeURIComponent("Olivia Marie's 1st Birthday Party 🌸");
+            const details = encodeURIComponent("Olivia is turning one! Pastel, woodland or floral outfits are encouraged. Bring your cozy smiles! 🎉");
+            const location = encodeURIComponent("Rancho IV West Clubhouse, Marikina City");
+            const startDate = "20260711T030000Z"; // UTC Time equivalent to 11 AM PHT (GMT+8)
+            const endDate = "20260711T060000Z";   // UTC Time equivalent to 2 PM PHT (GMT+8)
+
+            const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
+            window.open(googleUrl, '_blank');
+        });
+
+        // ------------------ PARTICLES ACCENT EFFECT ------------------
+        const canvas = document.getElementById('canvas-particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -100 - 10;
+                this.size = Math.random() * 5 + 4;
+                this.speedY = Math.random() * 0.8 + 0.4;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 1 - 0.5;
+                // Randomly choose cherry blossom leaf (pink) or green leaf
+                this.type = Math.random() > 0.4 ? 'petal' : 'leaf';
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                
+                // Wrap around bottom
+                if (this.y > canvas.height + 20) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                
+                if (this.type === 'petal') {
+                    // Delicate pink blossom
+                    ctx.fillStyle = 'rgba(242, 209, 209, 0.7)';
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size, this.size * 1.5, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                } else {
+                    // Soft green sage leaf
+                    ctx.fillStyle = 'rgba(160, 178, 150, 0.6)';
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size * 0.8, this.size * 1.6, Math.PI / 4, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(Math.floor(window.innerWidth / 25), 45);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Initialize elements
+        window.onload = function() {
+            initParticles();
+            animateParticles();
+            initWishlist();
+            renderGuestbook();
+        };
+    </script>
+</body>
+</html>
