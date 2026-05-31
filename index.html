@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olivia Marie is Turning One! 🌸</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Playful & Rounded Aesthetic -->
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Olivia Marie is Turning One! 🌸">
+    <meta property="og:description" content="A whimsical floral garden birthday celebration for Olivia Marie's first magical year. Click for details and directions.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="Olivia Marie is Turning One! 🌸">
+    <meta property="twitter:description" content="A whimsical floral garden birthday celebration for Olivia Marie's first magical year. Click for details and directions.">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fredoka:wght@300..700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Quicksand:wght@400..700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -34,70 +46,77 @@
                     fontFamily: {
                         sans: ['Quicksand', 'sans-serif'],
                         display: ['Fredoka', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                        serif: ['Lora', 'serif'],
+                        cursive: ['"Great Vibes"', 'cursive'],
                     }
                 }
             }
         }
     </script>
+
     <style>
         body {
             background-color: #FAF7F0;
+            background-image: radial-gradient(#F2D1D1 0.5px, transparent 0.5px), radial-gradient(#A0B296 0.5px, #FAF7F0 0.5px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            background-attachment: fixed;
             font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
         }
-        .woodland-pattern {
-            background-color: #FAF7F0;
-            background-image: radial-gradient(#F2D1D1 1px, transparent 1px), radial-gradient(#A0B296 1px, transparent 1px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
-            opacity: 0.25;
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-map {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-map:active {
+            transform: scale(0.98);
+        }
+
+        /* Decorative stars */
+        .star {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-            pointer-events: none;
+            color: #E29595;
+            opacity: 0.6;
+            animation: twinkle 4s infinite alternate;
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 0.7; transform: scale(1.1); }
         }
-        ::-webkit-scrollbar-track {
-            background: #FAF7F0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #C8B6A6;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #8D7B68;
-        }
-        /* Soft bounce animations */
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
         }
         .floating-element {
             animation: float 4s ease-in-out infinite;
         }
-        .pulse-soft {
-            animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
+
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: .85; transform: scale(1.02); }
         }
-        /* SVG hover fix: anchor the transform to the element's own bounding box,
-           not the SVG viewport. Without this, hover-scale on a translated <g> drifts,
-           the cursor falls off the element, hover ends, and it flickers back and forth. */
+        .pulse-soft {
+            animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* SVG interactivity */
         #invite-svg g[class*="hover:"],
         #invite-svg .svg-interactive {
             transform-box: fill-box;
             transform-origin: center;
         }
-        /* Cute wiggle: rotate back-and-forth a few times with a tiny scale pop. */
         @keyframes svg-wiggle {
             0%, 100% { transform: rotate(0deg) scale(1); }
             15%      { transform: rotate(-9deg) scale(1.06); }
@@ -105,580 +124,481 @@
             55%      { transform: rotate(-6deg) scale(1.04); }
             75%      { transform: rotate(5deg)  scale(1.04); }
         }
-        #invite-svg .svg-interactive {
-            cursor: pointer;
-        }
+        #invite-svg .svg-interactive { cursor: pointer; }
         #invite-svg .svg-interactive:hover {
             animation: svg-wiggle 0.9s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="relative min-h-screen text-woodland-brown pb-16">
-    <!-- Particle canvas for falling cherry blossoms and leaves -->
-    <canvas id="canvas-particles" class="fixed top-0 left-0 w-full h-full pointer-events-none z-10"></canvas>
-    <div class="woodland-pattern"></div>
+<body class="text-woodland-brown font-sans antialiased selection:bg-woodland-pink selection:text-white pb-10">
 
-    <!-- Whimsical Audio Synthesizer Controls (Floating Top-Right) -->
-    <div class="fixed top-4 right-4 z-50 flex items-center gap-2 bg-white/95 backdrop-blur-sm border border-woodland-blush/60 px-4 py-2.5 rounded-full shadow-lg transition-all duration-300 hover:scale-105">
-        <button id="btn-music" class="flex items-center justify-center w-8 h-8 rounded-full bg-woodland-pink text-white hover:bg-woodland-darkpink transition-colors" title="Play cute woodland lullaby melody!">
-            <i id="music-icon" class="fas fa-play"></i>
+    <!-- Particle canvas (cherry blossoms + leaves) -->
+    <canvas id="canvas-particles" class="fixed top-0 left-0 w-full h-full pointer-events-none z-10"></canvas>
+
+    <!-- Floating Music Toggle (compact, mobile-friendly) -->
+    <div class="fixed top-3 right-3 z-50 flex items-center gap-2 bg-white/95 backdrop-blur-sm border border-woodland-blush/60 px-3 py-2 rounded-full shadow-lg">
+        <button id="btn-music" class="flex items-center justify-center w-7 h-7 rounded-full bg-woodland-pink text-white hover:bg-woodland-darkpink transition-colors" title="Play sweet lullaby">
+            <i id="music-icon" class="fas fa-play text-xs"></i>
         </button>
-        <div class="flex flex-col text-[11px] leading-tight select-none">
-            <span class="font-bold text-woodland-brown">Sweet Lullaby</span>
-            <span id="music-status" class="text-woodland-darkgreen font-semibold">Click to play sound!</span>
-        </div>
-        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5" class="w-16 accent-woodland-pink cursor-pointer h-1 rounded-lg">
+        <span id="music-status" class="text-[10px] font-bold text-woodland-darkgreen select-none">Sweet Lullaby</span>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5" class="w-12 accent-woodland-pink cursor-pointer h-1 rounded-lg">
     </div>
 
-    <!-- Main Container -->
-    <div class="relative z-20 max-w-6xl mx-auto px-4 pt-8 md:pt-16">
-        
-        <!-- ================= HERO SECTION / BOTH PANELS ================= -->
-        <main class="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden border-4 border-woodland-blush/40 flex flex-col md:flex-row">
-            
-            <!-- LEFT PANEL: Fully Animated Recreated SVG Art (The Invite Artwork!) -->
-            <section class="w-full md:w-1/2 bg-woodland-beige/40 p-6 md:p-10 flex items-center justify-center border-b-4 md:border-b-0 md:border-r-4 border-woodland-blush/30 relative select-none">
-                <div class="w-full max-w-[420px] aspect-[3/4] relative">
-                    <!-- Interactive SVG Recreating the invitation's gorgeous graphic details -->
-                    <svg viewBox="0 0 300 400" class="w-full h-full drop-shadow-md rounded-2xl" id="invite-svg" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#FAF7F0" />
-                                <stop offset="100%" stop-color="#F4EFE6" />
-                            </linearGradient>
-                            <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-                                <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-opacity="0.15"/>
-                            </filter>
-                        </defs>
-                        <!-- Background panel -->
-                        <rect width="300" height="400" rx="16" fill="url(#skyGrad)" stroke="#E29595" stroke-width="2" stroke-opacity="0.3"/>
-                        
-                        <!-- Top Hanging Leaves border -->
-                        <path d="M 0 0 C 40 20, 80 10, 120 25 C 160 10, 200 20, 240 5 C 270 15, 300 0, 300 0 L 300 0 L 0 0 Z" fill="#D5E0D5" opacity="0.8"/>
-                        <path d="M 10 0 C 15 15, 25 15, 30 0" fill="none" stroke="#798777" stroke-width="1.5"/>
-                        <path d="M 50 0 C 55 18, 65 18, 70 0" fill="none" stroke="#798777" stroke-width="1.5"/>
-                        <path d="M 110 0 C 115 15, 125 15, 130 0" fill="none" stroke="#798777" stroke-width="1.5"/>
-                        <path d="M 170 0 C 175 16, 185 16, 190 0" fill="none" stroke="#798777" stroke-width="1.5"/>
-                        <path d="M 230 0 C 235 15, 245 15, 250 0" fill="none" stroke="#798777" stroke-width="1.5"/>
-                        
-                        <!-- Mini hanging flowers -->
-                        <circle cx="20" cy="15" r="3" fill="#A0C3D2" opacity="0.8"/>
-                        <circle cx="60" cy="18" r="3" fill="#F2D1D1" opacity="0.8"/>
-                        <circle cx="120" cy="15" r="3.5" fill="#A0C3D2" opacity="0.8"/>
-                        <circle cx="180" cy="16" r="3" fill="#F2D1D1" opacity="0.8"/>
-                        <circle cx="240" cy="15" r="3.5" fill="#A0C3D2" opacity="0.8"/>
+    <!-- Mobile Container -->
+    <main class="max-w-md mx-auto bg-white min-h-screen shadow-2xl relative overflow-hidden z-20">
 
-                        <!-- Happy Glowing Sun -->
-                        <g id="svg-sun" class="cursor-pointer transition-transform duration-500 hover:scale-110 origin-[150px_45px]">
-                            <!-- Rays -->
-                            <path d="M 150 20 L 150 14 M 150 70 L 150 76 M 125 45 L 119 45 M 175 45 L 181 45 M 132 27 L 128 23 M 168 63 L 172 67 M 132 63 L 128 67 M 168 27 L 172 23" stroke="#D3A243" stroke-width="1.5" stroke-linecap="round"/>
-                            <!-- Sun Body -->
-                            <circle cx="150" cy="45" r="14" fill="#F4DFB9" stroke="#D3A243" stroke-width="1.5"/>
-                            <circle cx="150" cy="45" r="10" fill="#FFF2CC"/>
-                        </g>
+        <!-- Decorative stars -->
+        <div class="absolute top-8 left-6 star text-xl"><i class="fas fa-star"></i></div>
+        <div class="absolute top-32 right-8 star text-lg" style="animation-delay: 1s;"><i class="fas fa-star"></i></div>
+        <div class="absolute top-64 left-10 star text-sm" style="animation-delay: 2s;"><i class="fas fa-star"></i></div>
 
-                        <!-- Cherry blossoms (Left & Right top) -->
-                        <!-- Left Top Pink Flower -->
-                        <g transform="translate(48, 65) scale(0.85)">
-                            <g class="svg-interactive">
-                                <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                                <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
-                            </g>
-                        </g>
-                        <!-- Right Top Pink Flower -->
-                        <g transform="translate(252, 65) scale(0.85)">
-                            <g class="svg-interactive">
-                                <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                                <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
-                            </g>
-                        </g>
-                        <!-- Smaller accent flowers -->
-                        <g transform="translate(108, 48) scale(0.55)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#A0C3D2" stroke="#8D7B68" stroke-width="1"/><circle cx="0" cy="0" r="3" fill="#FFF"/></g>
-                        <g transform="translate(192, 48) scale(0.55)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#A0C3D2" stroke="#8D7B68" stroke-width="1"/><circle cx="0" cy="0" r="3" fill="#FFF"/></g>
+        <!-- ================= HERO: SVG INVITE ART ================= -->
+        <div class="px-6 pt-10 pb-2 fade-in">
+            <div class="w-full max-w-[360px] aspect-[3/4] mx-auto relative select-none">
+                <svg viewBox="0 0 300 400" class="w-full h-full drop-shadow-md rounded-2xl" id="invite-svg" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FAF7F0" />
+                            <stop offset="100%" stop-color="#F4EFE6" />
+                        </linearGradient>
+                        <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+                            <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-opacity="0.15"/>
+                        </filter>
+                    </defs>
+                    <rect width="300" height="400" rx="16" fill="url(#skyGrad)" stroke="#E29595" stroke-width="2" stroke-opacity="0.3"/>
 
-                        <!-- Strawberries -->
-                        <!-- Strawberry Top Left -->
-                        <g transform="translate(26, 92) rotate(-15) scale(0.8)">
-                            <g class="svg-interactive">
-                                <!-- Berry body -->
-                                <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                                <!-- Green cap -->
-                                <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
-                                <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
-                                <!-- Little seed dots -->
-                                <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
-                            </g>
-                        </g>
-                        <!-- Strawberry Middle Left -->
-                        <g transform="translate(51, 138) rotate(15) scale(0.8)">
-                            <g class="svg-interactive">
-                                <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                                <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
-                                <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
-                                <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
-                            </g>
-                        </g>
-                        <!-- Strawberry Top Right -->
-                        <g transform="translate(274, 92) rotate(15) scale(0.8)">
-                            <g class="svg-interactive">
-                                <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                                <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
-                                <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
-                                <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
-                            </g>
-                        </g>
-                        <!-- Strawberry Middle Right -->
-                        <g transform="translate(249, 138) rotate(-15) scale(0.8)">
-                            <g class="svg-interactive">
-                                <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                                <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
-                                <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
-                                <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
-                            </g>
-                        </g>
+                    <!-- Top Hanging Leaves border -->
+                    <path d="M 0 0 C 40 20, 80 10, 120 25 C 160 10, 200 20, 240 5 C 270 15, 300 0, 300 0 L 300 0 L 0 0 Z" fill="#D5E0D5" opacity="0.8"/>
+                    <path d="M 10 0 C 15 15, 25 15, 30 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                    <path d="M 50 0 C 55 18, 65 18, 70 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                    <path d="M 110 0 C 115 15, 125 15, 130 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                    <path d="M 170 0 C 175 16, 185 16, 190 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                    <path d="M 230 0 C 235 15, 245 15, 250 0" fill="none" stroke="#798777" stroke-width="1.5"/>
+                    <circle cx="20" cy="15" r="3" fill="#A0C3D2" opacity="0.8"/>
+                    <circle cx="60" cy="18" r="3" fill="#F2D1D1" opacity="0.8"/>
+                    <circle cx="120" cy="15" r="3.5" fill="#A0C3D2" opacity="0.8"/>
+                    <circle cx="180" cy="16" r="3" fill="#F2D1D1" opacity="0.8"/>
+                    <circle cx="240" cy="15" r="3.5" fill="#A0C3D2" opacity="0.8"/>
 
-                        <!-- Sparkles and Dots -->
-                        <path d="M 62 105 L 62 101 M 62 105 L 62 109 M 62 105 L 58 105 M 62 105 L 66 105" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
-                        <path d="M 238 105 L 238 101 M 238 105 L 238 109 M 238 105 L 234 105 M 238 105 L 242 105" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
-                        <!-- Sunflowers (Yellow floral) -->
-                        <!-- Sunflower Middle Left -->
-                        <g transform="translate(32, 172) scale(0.95)">
-                            <g class="svg-interactive">
-                                <!-- Petals -->
-                                <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                                <!-- Center seed grid -->
-                                <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
-                                <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
-                            </g>
-                        </g>
-                        <!-- Sunflower Middle Right -->
-                        <g transform="translate(268, 172) scale(0.95)">
-                            <g class="svg-interactive">
-                                <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                                <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
-                                <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
-                            </g>
-                        </g>
+                    <!-- Sun -->
+                    <g id="svg-sun" class="cursor-pointer transition-transform duration-500 hover:scale-110 origin-[150px_45px]">
+                        <path d="M 150 20 L 150 14 M 150 70 L 150 76 M 125 45 L 119 45 M 175 45 L 181 45 M 132 27 L 128 23 M 168 63 L 172 67 M 132 63 L 128 67 M 168 27 L 172 23" stroke="#D3A243" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="150" cy="45" r="14" fill="#F4DFB9" stroke="#D3A243" stroke-width="1.5"/>
+                        <circle cx="150" cy="45" r="10" fill="#FFF2CC"/>
+                    </g>
 
-                        <!-- Mushrooms Left & Right middle -->
-                        <!-- Mushroom Left -->
-                        <g transform="translate(41, 222) scale(0.85)">
-                            <g class="svg-interactive">
-                                <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
-                                <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                                <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
-                            </g>
-                        </g>
-                        <!-- Mushroom Right -->
-                        <g transform="translate(259, 222) scale(0.85)">
-                            <g class="svg-interactive">
-                                <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
-                                <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                                <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
-                            </g>
-                        </g>
+                    <!-- Cherry blossoms -->
+                    <g transform="translate(48, 65) scale(0.85)"><g class="svg-interactive">
+                        <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                        <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
+                    </g></g>
+                    <g transform="translate(252, 65) scale(0.85)"><g class="svg-interactive">
+                        <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                        <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
+                    </g></g>
+                    <g transform="translate(108, 48) scale(0.55)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#A0C3D2" stroke="#8D7B68" stroke-width="1"/><circle cx="0" cy="0" r="3" fill="#FFF"/></g>
+                    <g transform="translate(192, 48) scale(0.55)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#A0C3D2" stroke="#8D7B68" stroke-width="1"/><circle cx="0" cy="0" r="3" fill="#FFF"/></g>
 
-                        <!-- THE GIANT SIGNATURE "1" -->
-                        <g id="big-number-one" class="cursor-pointer transition-transform duration-500 hover:scale-105 origin-center">
-                            <!-- Outlined Big Pink 1 with cozy retro design -->
-                            <path d="M 135 120 L 145 120 C 145 120, 150 114, 156 120 L 156 244 L 165 244 C 169 244, 169 252, 165 252 L 135 252 C 131 252, 131 244, 135 244 L 144 244 L 144 128 L 135 128 C 131 128, 131 120, 135 120 Z" 
-                                  fill="#F2D1D1" stroke="#8D7B68" stroke-width="2.5" stroke-linejoin="round" filter="url(#shadow)"/>
-                            <!-- Inner details line -->
-                            <path d="M 148 128 L 148 244" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-                        </g>
+                    <!-- Strawberries -->
+                    <g transform="translate(26, 92) rotate(-15) scale(0.8)"><g class="svg-interactive">
+                        <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                        <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                        <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                        <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                    </g></g>
+                    <g transform="translate(51, 138) rotate(15) scale(0.8)"><g class="svg-interactive">
+                        <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                        <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                        <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                        <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                    </g></g>
+                    <g transform="translate(274, 92) rotate(15) scale(0.8)"><g class="svg-interactive">
+                        <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                        <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                        <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                        <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                    </g></g>
+                    <g transform="translate(249, 138) rotate(-15) scale(0.8)"><g class="svg-interactive">
+                        <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                        <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                        <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                        <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                    </g></g>
 
-                        <!-- Sparkles near center -->
-                        <path d="M 94 220 L 94 216 M 94 220 L 94 224 M 94 220 L 90 220 M 94 220 L 98 220" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
-                        <path d="M 206 220 L 206 216 M 206 220 L 206 224 M 206 220 L 202 220 M 206 220 L 210 220" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M 62 105 L 62 101 M 62 105 L 62 109 M 62 105 L 58 105 M 62 105 L 66 105" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M 238 105 L 238 101 M 238 105 L 238 109 M 238 105 L 234 105 M 238 105 L 242 105" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
 
-                        <!-- Flower Clusters Bottom Left & Right -->
-                        <g transform="translate(28, 245) scale(0.95)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3.5" fill="#FAF7F0" stroke="#8D7B68" stroke-width="0.7"/></g>
-                        <g transform="translate(272, 245) scale(0.95)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3.5" fill="#FAF7F0" stroke="#8D7B68" stroke-width="0.7"/></g>
+                    <!-- Sunflowers -->
+                    <g transform="translate(32, 172) scale(0.95)"><g class="svg-interactive">
+                        <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                        <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
+                        <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
+                    </g></g>
+                    <g transform="translate(268, 172) scale(0.95)"><g class="svg-interactive">
+                        <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                        <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
+                        <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
+                    </g></g>
 
-                        <g transform="translate(54, 255) scale(0.7)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#FFF" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/></g>
-                        <g transform="translate(246, 255) scale(0.7)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#FFF" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/></g>
+                    <!-- Mushrooms -->
+                    <g transform="translate(41, 222) scale(0.85)"><g class="svg-interactive">
+                        <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
+                        <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                        <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
+                    </g></g>
+                    <g transform="translate(259, 222) scale(0.85)"><g class="svg-interactive">
+                        <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
+                        <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                        <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
+                    </g></g>
 
-                        <!-- Ginkgo Biloba Leaves -->
-                        <path d="M 90 270 Q 98 268, 102 276 C 96 280, 88 276, 90 270 Z" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                        <path d="M 100 274 L 105 281" stroke="#8D7B68" stroke-width="1"/>
+                    <!-- Big "1" -->
+                    <g id="big-number-one" class="cursor-pointer transition-transform duration-500 hover:scale-105 origin-center">
+                        <path d="M 135 120 L 145 120 C 145 120, 150 114, 156 120 L 156 244 L 165 244 C 169 244, 169 252, 165 252 L 135 252 C 131 252, 131 244, 135 244 L 144 244 L 144 128 L 135 128 C 131 128, 131 120, 135 120 Z"
+                              fill="#F2D1D1" stroke="#8D7B68" stroke-width="2.5" stroke-linejoin="round" filter="url(#shadow)"/>
+                        <path d="M 148 128 L 148 244" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                    </g>
 
-                        <path d="M 210 270 Q 202 268, 198 276 C 204 280, 212 276, 210 270 Z" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                        <path d="M 200 274 L 195 281" stroke="#8D7B68" stroke-width="1"/>
+                    <path d="M 94 220 L 94 216 M 94 220 L 94 224 M 94 220 L 90 220 M 94 220 L 98 220" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M 206 220 L 206 216 M 206 220 L 206 224 M 206 220 L 202 220 M 206 220 L 210 220" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
 
-                        <!-- Bottom Field Flowers and Grasses -->
-                        <g transform="translate(150, 410)">
-                            <!-- Weaving blades of grass -->
-                            <path d="M -120 -10 Q -90 -60, -110 -100 Q -105 -100, -118 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
-                            <path d="M -90 -10 Q -70 -70, -80 -105 Q -75 -105, -88 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
-                            
-                            <path d="M 120 -10 Q 90 -60, 110 -100 Q 105 -100, 118 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
-                            <path d="M 90 -10 Q 70 -70, 80 -105 Q 75 -105, 88 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+                    <!-- Bottom Flowers -->
+                    <g transform="translate(28, 245) scale(0.95)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3.5" fill="#FAF7F0" stroke="#8D7B68" stroke-width="0.7"/></g>
+                    <g transform="translate(272, 245) scale(0.95)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3.5" fill="#FAF7F0" stroke="#8D7B68" stroke-width="0.7"/></g>
+                    <g transform="translate(54, 255) scale(0.7)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#FFF" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/></g>
+                    <g transform="translate(246, 255) scale(0.7)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#FFF" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/><circle cx="0" cy="0" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/></g>
 
-                            <!-- Center Wildflowers -->
-                            <path d="M -40 -10 Q -20 -50, -30 -90 Q -25 -90, -38 -10" fill="none" stroke="#798777" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M 40 -10 Q 20 -50, 30 -90 Q 25 -90, 38 -10" fill="none" stroke="#798777" stroke-width="1.5" stroke-linecap="round"/>
-                            
-                            <!-- Little yellow buds on stalks -->
-                            <circle cx="-30" cy="-90" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
-                            <circle cx="-25" cy="-75" r="2.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
-                            <circle cx="30" cy="-90" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
-                            <circle cx="25" cy="-75" r="2.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+                    <path d="M 90 270 Q 98 268, 102 276 C 96 280, 88 276, 90 270 Z" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                    <path d="M 100 274 L 105 281" stroke="#8D7B68" stroke-width="1"/>
+                    <path d="M 210 270 Q 202 268, 198 276 C 204 280, 212 276, 210 270 Z" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                    <path d="M 200 274 L 195 281" stroke="#8D7B68" stroke-width="1"/>
 
-                            <!-- Big Main Pink Bellflower at center bottom -->
-                            <g transform="translate(0, -50)">
-                                <g class="svg-interactive">
-                                    <path d="M 0 -15 Q -15 -35, 0 -50 Q 15 -35, 0 -15" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                                    <path d="M -15 -35 C -5 -35, -5 -45, 0 -50 C 5 -45, 5 -35, 15 -35 C 10 -25, -10 -25, -15 -35 Z" fill="#F2D1D1" stroke="#8D7B68" stroke-width="1"/>
-                                    <circle cx="0" cy="-35" r="4" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1"/>
-                                </g>
-                            </g>
-                        </g>
-                    </svg>
-
-                    <!-- Magical Interactive Prompt Overlay -->
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                        <span class="bg-white/90 border border-woodland-blush/80 px-4 py-2 rounded-full text-xs font-bold text-woodland-pink shadow-md flex items-center gap-1.5 animate-bounce">
-                            <i class="fas fa-magic"></i> Hover elements to interact!
-                        </span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- RIGHT PANEL: Invitation Text & Quick Details -->
-            <section class="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-between relative bg-white">
-                <div class="text-center md:text-left">
-                    <!-- Title Area -->
-                    <div class="space-y-1">
-                        <h1 class="font-display text-4xl sm:text-5xl md:text-5xl font-bold text-woodland-brown drop-shadow-sm tracking-wide leading-tight">
-                            Olivia Marie's
-                        </h1>
-                        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink tracking-wider">
-                            TURNING ONE!
-                        </h2>
-                    </div>
-
-                    <!-- Decorative Cherry Blossoms -->
-                    <div class="flex items-center justify-center md:justify-start gap-2.5 my-4">
-                        <i class="fas fa-spa text-woodland-pink text-lg floating-element" style="animation-delay: 0.2s"></i>
-                        <i class="fas fa-spa text-woodland-pink text-xs floating-element" style="animation-delay: 0.5s"></i>
-                        <i class="fas fa-spa text-woodland-pink text-sm floating-element" style="animation-delay: 0.8s"></i>
-                    </div>
-
-                    <!-- Invitation Warm Body -->
-                    <p class="font-medium text-woodland-brown/85 text-base sm:text-lg italic max-w-md">
-                        Please join us for a whimsical floral garden birthday celebration as we toast Olivia's very first magical year!
-                    </p>
-
-                    <!-- Key details List -->
-                    <div class="mt-8 space-y-4 max-w-md mx-auto md:mx-0">
-                        <!-- Date -->
-                        <div class="flex items-center gap-4 p-3 bg-woodland-cream/60 hover:bg-woodland-cream border border-woodland-blush/20 rounded-2xl transition-all duration-300">
-                            <div class="w-12 h-12 rounded-xl bg-woodland-pink/15 flex items-center justify-center text-woodland-pink text-lg shrink-0">
-                                <i class="far fa-calendar-alt"></i>
-                            </div>
-                            <div class="text-left">
-                                <span class="block text-xs font-bold text-woodland-darkgreen uppercase tracking-wider">Date</span>
-                                <span class="font-bold text-woodland-brown text-base">Saturday, 11 July 2026</span>
-                            </div>
-                        </div>
-
-                        <!-- Time -->
-                        <div class="flex items-center gap-4 p-3 bg-woodland-cream/60 hover:bg-woodland-cream border border-woodland-blush/20 rounded-2xl transition-all duration-300">
-                            <div class="w-12 h-12 rounded-xl bg-woodland-pink/15 flex items-center justify-center text-woodland-pink text-lg shrink-0">
-                                <i class="far fa-clock"></i>
-                            </div>
-                            <div class="text-left">
-                                <span class="block text-xs font-bold text-woodland-darkgreen uppercase tracking-wider">Time</span>
-                                <span class="font-bold text-woodland-brown text-base">11:00 AM until 2:00 PM</span>
-                            </div>
-                        </div>
-
-                        <!-- Venue -->
-                        <div class="flex items-center gap-4 p-3 bg-woodland-cream/60 hover:bg-woodland-cream border border-woodland-blush/20 rounded-2xl transition-all duration-300">
-                            <div class="w-12 h-12 rounded-xl bg-woodland-pink/15 flex items-center justify-center text-woodland-pink text-lg shrink-0">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="text-left w-full">
-                                <span class="block text-xs font-bold text-woodland-darkgreen uppercase tracking-wider">Venue</span>
-                                <span class="font-bold text-woodland-brown text-base block">Rancho IV West Clubhouse</span>
-                                <span class="text-xs text-woodland-brown/80">Marikina City, Metro Manila</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Separator Icons (Mushroom, Acorn, Mushroom) -->
-                    <div class="flex items-center justify-center md:justify-start gap-4 my-6 py-1">
-                        <i class="fas fa-mushroom text-woodland-pink text-base floating-element" style="animation-delay: 0.1s">⚡</i>
-                        <span class="text-woodland-pink/40 text-sm">✦</span>
-                        <i class="fas fa-seedling text-woodland-darkgreen text-base floating-element" style="animation-delay: 0.4s">🍂</i>
-                        <span class="text-woodland-pink/40 text-sm">✦</span>
-                        <i class="fas fa-mushroom text-woodland-pink text-base floating-element" style="animation-delay: 0.7s">⚡</i>
-                    </div>
-
-                    <!-- RSVP Quick Summary Info -->
-                    <div class="bg-woodland-beige/40 rounded-2xl p-4 border border-woodland-blush/30 text-left max-w-md">
-                        <div class="flex justify-between items-center text-xs font-bold text-woodland-brown/70 mb-1">
-                            <span>RSVP DEADLINE</span>
-                            <span class="text-woodland-pink font-extrabold bg-white px-2 py-0.5 rounded-full border border-woodland-blush/30">11 June 2026</span>
-                        </div>
-                        <p class="text-xs text-woodland-brown/80">
-                            Please notify our lovely hosts <span class="font-bold text-woodland-brown">JC</span> or <span class="font-bold text-woodland-brown">Camille</span> to secure your spot in the garden!
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Action Button row -->
-                <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                    <button id="btn-cal-google" class="flex-1 bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2" title="Add event to Google Calendar">
-                        <i class="fab fa-google"></i> Add to Google Calendar
-                    </button>
-                    <button id="btn-cal-apple" class="flex-1 bg-woodland-brown hover:bg-woodland-lightbrown text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2" title="Add event to Apple Calendar">
-                        <i class="fab fa-apple"></i> Add to Apple Calendar
-                    </button>
-                </div>
-            </section>
-        </main>
-
-        <!-- ================= LIVE COUNTDOWN TIMER ================= -->
-        <section class="mt-8 bg-white/85 backdrop-blur-md rounded-2xl p-6 border-2 border-woodland-blush/20 shadow-xl relative overflow-hidden text-center">
-            <div class="absolute top-0 left-0 w-2 h-full bg-woodland-pink"></div>
-            <div class="absolute top-0 right-0 w-2 h-full bg-woodland-pink"></div>
-            <h3 class="font-display text-lg font-bold text-woodland-darkgreen uppercase tracking-widest mb-4 flex items-center justify-center gap-2">
-                <span>🌸</span> Counting down to the big day! <span>🌸</span>
-            </h3>
-            <div class="grid grid-cols-4 gap-2 max-w-lg mx-auto">
-                <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl p-3 sm:p-4">
-                    <span id="countdown-days" class="block font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink">00</span>
-                    <span class="text-[10px] sm:text-xs font-bold text-woodland-brown uppercase tracking-wider">Days</span>
-                </div>
-                <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl p-3 sm:p-4">
-                    <span id="countdown-hours" class="block font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink">00</span>
-                    <span class="text-[10px] sm:text-xs font-bold text-woodland-brown uppercase tracking-wider">Hours</span>
-                </div>
-                <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl p-3 sm:p-4">
-                    <span id="countdown-minutes" class="block font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink">00</span>
-                    <span class="text-[10px] sm:text-xs font-bold text-woodland-brown uppercase tracking-wider">Min</span>
-                </div>
-                <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl p-3 sm:p-4">
-                    <span id="countdown-seconds" class="block font-display text-2xl sm:text-3xl font-extrabold text-woodland-pink">00</span>
-                    <span class="text-[10px] sm:text-xs font-bold text-woodland-brown uppercase tracking-wider">Sec</span>
-                </div>
+                    <!-- Bottom grass + bellflower -->
+                    <g transform="translate(150, 410)">
+                        <path d="M -120 -10 Q -90 -60, -110 -100 Q -105 -100, -118 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M -90 -10 Q -70 -70, -80 -105 Q -75 -105, -88 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M 120 -10 Q 90 -60, 110 -100 Q 105 -100, 118 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M 90 -10 Q 70 -70, 80 -105 Q 75 -105, 88 -10" fill="none" stroke="#798777" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M -40 -10 Q -20 -50, -30 -90 Q -25 -90, -38 -10" fill="none" stroke="#798777" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M 40 -10 Q 20 -50, 30 -90 Q 25 -90, 38 -10" fill="none" stroke="#798777" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="-30" cy="-90" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+                        <circle cx="-25" cy="-75" r="2.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+                        <circle cx="30" cy="-90" r="3" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+                        <circle cx="25" cy="-75" r="2.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
+                        <g transform="translate(0, -50)"><g class="svg-interactive">
+                            <path d="M 0 -15 Q -15 -35, 0 -50 Q 15 -35, 0 -15" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                            <path d="M -15 -35 C -5 -35, -5 -45, 0 -50 C 5 -45, 5 -35, 15 -35 C 10 -25, -10 -25, -15 -35 Z" fill="#F2D1D1" stroke="#8D7B68" stroke-width="1"/>
+                            <circle cx="0" cy="-35" r="4" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1"/>
+                        </g></g>
+                    </g>
+                </svg>
             </div>
-        </section>
+        </div>
 
-        <!-- ================= VENUE MAP & DIRECTIONS HELPER ================= -->
-        <section class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl flex flex-col justify-between">
+        <!-- ================= TITLE ================= -->
+        <div class="text-center px-6 pt-6 pb-2 fade-in">
+            <p class="text-[11px] tracking-[0.25em] text-woodland-darkgreen font-serif uppercase mb-3">
+                Please join us as we celebrate
+            </p>
+            <h1 class="font-cursive text-6xl text-woodland-pink leading-tight py-2 drop-shadow-sm">
+                Olivia Marie
+            </h1>
+            <h2 class="font-display text-xl font-extrabold text-woodland-brown tracking-[0.2em] mt-1">
+                TURNING ONE!
+            </h2>
+            <div class="flex items-center justify-center gap-2.5 mt-4">
+                <i class="fas fa-spa text-woodland-pink text-base floating-element" style="animation-delay: 0.2s"></i>
+                <i class="fas fa-spa text-woodland-pink text-xs floating-element" style="animation-delay: 0.5s"></i>
+                <i class="fas fa-spa text-woodland-pink text-sm floating-element" style="animation-delay: 0.8s"></i>
+            </div>
+            <p class="font-serif italic text-sm text-woodland-brown/80 leading-relaxed mt-5">
+                A whimsical floral garden celebration<br>for Olivia's very first magical year.
+            </p>
+        </div>
+
+        <!-- ================= DATE SECTION ================= -->
+        <div class="flex items-center justify-center px-8 mt-8 mb-8 fade-in">
+            <div class="flex-1 border-t border-woodland-pink opacity-50"></div>
+            <div class="px-4 text-center">
+                <p class="text-xs tracking-widest text-woodland-darkgreen uppercase mb-1 font-serif">Saturday</p>
+                <p class="text-5xl font-serif text-woodland-pink leading-none">11</p>
+                <p class="text-xs tracking-widest text-woodland-darkgreen uppercase mt-1 font-serif">July 2026</p>
+            </div>
+            <div class="flex-1 border-t border-woodland-pink opacity-50"></div>
+        </div>
+
+        <!-- ================= EVENT DETAILS ================= -->
+        <div class="px-6 space-y-3 fade-in">
+            <div class="flex items-center gap-4 p-3 bg-woodland-cream/60 border border-woodland-blush/20 rounded-2xl">
+                <div class="w-11 h-11 rounded-xl bg-woodland-pink/15 flex items-center justify-center text-woodland-pink text-base shrink-0">
+                    <i class="far fa-clock"></i>
+                </div>
                 <div>
-                    <span class="inline-block bg-woodland-green/15 text-woodland-darkgreen font-bold text-xs px-3 py-1 rounded-full mb-3 uppercase tracking-wider">The Garden Gathering</span>
-                    <h3 class="font-display text-2xl font-bold text-woodland-brown mb-4">Rancho IV West Clubhouse</h3>
-                    <p class="text-sm text-woodland-brown/85 leading-relaxed mb-6">
-                        Located nestled in beautiful Marikina City, the clubhouse is highly accessible. Guests coming by private car can find ample, secure street parking inside the subdivision gate.
-                    </p>
-                    
-                    <div class="space-y-3.5 bg-woodland-cream/50 p-4 rounded-2xl border border-woodland-blush/10">
-                        <div class="flex items-start gap-3 text-xs text-woodland-brown/95">
-                            <i class="fas fa-info-circle text-woodland-pink mt-0.5 text-sm shrink-0"></i>
-                            <span>Please present this online digital invitation or mention "Olivia's Birthday" at the subdivision guard gate for quick security pass.</span>
-                        </div>
-                        <div class="flex items-start gap-3 text-xs text-woodland-brown/95">
-                            <i class="fas fa-tshirt text-woodland-darkgreen mt-0.5 text-sm shrink-0"></i>
-                            <span>Dress Code hint: Pastel, cottagecore, or light floral outfits are highly encouraged! 🌸🍓</span>
-                        </div>
+                    <span class="block text-[10px] font-bold text-woodland-darkgreen uppercase tracking-wider">Time</span>
+                    <span class="font-bold text-woodland-brown text-sm">11:00 AM until 2:00 PM</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-3 bg-woodland-cream/60 border border-woodland-blush/20 rounded-2xl">
+                <div class="w-11 h-11 rounded-xl bg-woodland-pink/15 flex items-center justify-center text-woodland-pink text-base shrink-0">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                    <span class="block text-[10px] font-bold text-woodland-darkgreen uppercase tracking-wider">Venue</span>
+                    <span class="font-bold text-woodland-brown text-sm block leading-tight">Rancho IV West Clubhouse</span>
+                    <span class="text-xs text-woodland-brown/80">Marikina City, Metro Manila</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= COUNTDOWN ================= -->
+        <div class="mt-10 px-6 fade-in">
+            <div class="bg-white border-2 border-woodland-blush/30 rounded-2xl p-5 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-woodland-pink"></div>
+                <div class="absolute top-0 right-0 w-1.5 h-full bg-woodland-pink"></div>
+                <h3 class="font-display text-xs font-bold text-woodland-darkgreen uppercase tracking-widest mb-3 text-center">
+                    🌸 Counting Down 🌸
+                </h3>
+                <div class="grid grid-cols-4 gap-2">
+                    <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl py-2 text-center">
+                        <span id="countdown-days" class="block font-display text-xl font-extrabold text-woodland-pink">00</span>
+                        <span class="text-[9px] font-bold text-woodland-brown uppercase tracking-wider">Days</span>
+                    </div>
+                    <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl py-2 text-center">
+                        <span id="countdown-hours" class="block font-display text-xl font-extrabold text-woodland-pink">00</span>
+                        <span class="text-[9px] font-bold text-woodland-brown uppercase tracking-wider">Hours</span>
+                    </div>
+                    <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl py-2 text-center">
+                        <span id="countdown-minutes" class="block font-display text-xl font-extrabold text-woodland-pink">00</span>
+                        <span class="text-[9px] font-bold text-woodland-brown uppercase tracking-wider">Min</span>
+                    </div>
+                    <div class="bg-woodland-cream/80 border border-woodland-blush/20 rounded-xl py-2 text-center">
+                        <span id="countdown-seconds" class="block font-display text-xl font-extrabold text-woodland-pink">00</span>
+                        <span class="text-[9px] font-bold text-woodland-brown uppercase tracking-wider">Sec</span>
                     </div>
                 </div>
-
-                <div class="mt-6 pt-6 border-t border-woodland-blush/10 flex flex-wrap gap-3">
-                    <a href="https://waze.com/ul/hwdw5k1un1" target="_blank" class="bg-woodland-cream hover:bg-woodland-beige text-woodland-brown border border-woodland-lightbrown font-bold py-2.5 px-4 rounded-xl text-xs transition-colors flex items-center gap-2">
-                        <i class="fab fa-waze"></i> Open in Waze
-                    </a>
-                    <a href="https://maps.app.goo.gl/oiviMRkGNiXzp4zy9" target="_blank" class="bg-woodland-pink hover:bg-woodland-darkpink text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors flex items-center gap-2 shadow">
-                        <i class="fas fa-route"></i> Open in Google Maps
-                    </a>
-                </div>
             </div>
+        </div>
 
-            <!-- Custom Mock Stylized interactive Map -->
-            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-4 border-2 border-woodland-blush/20 shadow-xl relative overflow-hidden min-h-[300px] flex flex-col">
-                <div class="absolute inset-0 bg-woodland-beige/20 flex flex-col items-center justify-center p-4 text-center z-10" id="map-cover">
-                    <!-- Custom Cozy Map Graphics & Pin -->
-                    <div class="relative mb-4 cursor-pointer transition-transform duration-300 hover:scale-110" onclick="revealMap()">
-                        <div class="w-16 h-16 rounded-full bg-woodland-pink/20 flex items-center justify-center pulse-soft">
-                            <i class="fas fa-map-marked-alt text-woodland-pink text-3xl"></i>
+        <!-- ================= IMPORTANT NOTES ================= -->
+        <div class="mt-10 px-6 fade-in">
+            <div class="bg-woodland-beige/50 rounded-2xl p-6 border border-woodland-blush/20 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 text-woodland-pink opacity-10 text-6xl"><i class="fas fa-bell"></i></div>
+                <h3 class="font-serif text-lg font-semibold text-woodland-pink mb-4 flex items-center gap-2">
+                    <i class="fas fa-clipboard-list"></i> Important Notes
+                </h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex gap-3">
+                        <i class="fas fa-shield-alt text-woodland-darkgreen mt-1"></i>
+                        <div>
+                            Please present this digital invitation or mention <strong>"Olivia's Birthday"</strong> at the subdivision guard gate for quick entry.
                         </div>
-                        <div class="absolute -top-1 -right-1 bg-woodland-green text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">LIVE</div>
-                    </div>
-                    <h4 class="font-display font-bold text-base text-woodland-brown">Interactive Map Preview</h4>
-                    <p class="text-xs text-woodland-brown/85 max-w-xs mt-1">Click to render the interactive community map directions.</p>
-                    <button onclick="revealMap()" class="mt-4 bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-2 px-4 rounded-lg text-xs transition-colors">
-                        Load Map View
-                    </button>
-                </div>
-                <!-- Embedded Leaflet/OSM Frame that lazy-loads to save energy -->
-                <iframe id="map-iframe" class="w-full h-full rounded-2xl border-0 hidden" src="" allowfullscreen="" loading="lazy"></iframe>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fas fa-parking text-woodland-darkgreen mt-1"></i>
+                        <div>
+                            Ample, secure street parking is available inside the subdivision gate.
+                        </div>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fas fa-tshirt text-woodland-darkgreen mt-1"></i>
+                        <div>
+                            <strong>Dress code:</strong> Pastel, cottagecore, or light floral outfits are highly encouraged! 🌸🍓
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </section>
+        </div>
 
-        <!-- ================= MILESTONE GALLERY / PHOTO FRAME ================= -->
-        <section class="mt-16">
-            <div class="text-center mb-10">
-                <h3 class="font-display text-3xl font-extrabold text-woodland-brown">Memory Lane</h3>
-                <p class="text-sm text-woodland-darkgreen font-semibold mt-1">Cozy milestones from Olivia Marie's beautiful first year</p>
-                <div class="w-12 h-1 bg-woodland-pink mx-auto mt-3 rounded-full"></div>
+        <!-- ================= RSVP ================= -->
+        <div class="mt-6 px-6 fade-in">
+            <div class="bg-woodland-blush/30 rounded-2xl p-5 border border-woodland-blush/40 text-center">
+                <p class="text-[10px] font-bold text-woodland-brown/70 uppercase tracking-widest mb-2">RSVP by</p>
+                <p class="font-display text-2xl font-extrabold text-woodland-pink">11 June 2026</p>
+                <p class="text-xs text-woodland-brown/80 mt-2 leading-relaxed">
+                    Please notify <span class="font-bold text-woodland-brown">JC</span> or <span class="font-bold text-woodland-brown">Camille</span> to secure your spot in the garden!
+                </p>
+            </div>
+        </div>
+
+        <!-- ================= LOCATION & NAVIGATION ================= -->
+        <div class="mt-10 px-6 fade-in">
+            <h3 class="font-serif text-center text-xl font-semibold mb-2">Location & Navigation</h3>
+            <p class="text-center text-xs text-woodland-brown/80 mb-5 leading-relaxed">
+                Rancho IV West Clubhouse, Marikina City
+            </p>
+            <div class="grid grid-cols-2 gap-3">
+                <a href="https://maps.app.goo.gl/oiviMRkGNiXzp4zy9" target="_blank" rel="noopener noreferrer" class="btn-map flex flex-col items-center justify-center py-3 bg-[#e8f0fe] text-[#1a73e8] rounded-xl text-xs font-semibold shadow-sm border border-[#d2e3fc]">
+                    <i class="fas fa-map-marker-alt text-lg mb-1"></i> Google Maps
+                </a>
+                <a href="https://waze.com/ul/hwdw5k1un1" target="_blank" rel="noopener noreferrer" class="btn-map flex flex-col items-center justify-center py-3 bg-[#e0f7fa] text-[#0097a7] rounded-xl text-xs font-semibold shadow-sm border border-[#b2ebf2]">
+                    <i class="fab fa-waze text-lg mb-1"></i> Waze
+                </a>
+            </div>
+        </div>
+
+        <!-- ================= ADD TO CALENDAR ================= -->
+        <div class="mt-8 px-6 fade-in">
+            <h3 class="font-serif text-center text-xl font-semibold mb-5">Save the Date</h3>
+            <div class="space-y-3">
+                <button id="btn-cal-google" class="w-full bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-3 px-5 rounded-2xl shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 text-sm">
+                    <i class="fab fa-google"></i> Add to Google Calendar
+                </button>
+                <button id="btn-cal-apple" class="w-full bg-woodland-brown hover:bg-woodland-lightbrown text-white font-bold py-3 px-5 rounded-2xl shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 text-sm">
+                    <i class="fab fa-apple"></i> Add to Apple Calendar
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= MEMORY LANE ================= -->
+        <div class="mt-12 px-6 fade-in">
+            <div class="text-center mb-6">
+                <h3 class="font-display text-2xl font-extrabold text-woodland-brown">Memory Lane</h3>
+                <p class="text-xs text-woodland-darkgreen font-semibold mt-1">Cozy milestones from Olivia's first year</p>
+                <div class="w-10 h-1 bg-woodland-pink mx-auto mt-3 rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-                <!-- Day 1 -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform rotate-1 hover:rotate-0 hover:scale-105 transition-all duration-300">
+            <div class="grid grid-cols-2 gap-3">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform rotate-1">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="day%201.jpeg" alt="Olivia on day 1" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">JULY 2025</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">JUL 2025</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">Day 1</span>
-                        <span class="font-bold text-sm">Hello, World! ✨</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">Day 1</span>
+                        <span class="font-bold text-xs">Hello, World! ✨</span>
                     </figcaption>
                 </figure>
-
-                <!-- 1 Month -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform -rotate-1 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform -rotate-1">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="1%20month.jpeg" alt="Olivia at 1 month" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">AUG 2025</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">AUG 2025</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">1 Month</span>
-                        <span class="font-bold text-sm">First Snuggles 🤍</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">1 Month</span>
+                        <span class="font-bold text-xs">First Snuggles 🤍</span>
                     </figcaption>
                 </figure>
-
-                <!-- 2 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform rotate-2">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="2%20months.jpeg" alt="Olivia at 2 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">SEP 2025</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">SEP 2025</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">2 Months</span>
-                        <span class="font-bold text-sm">Tiny &amp; Cozy 🌸</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">2 Months</span>
+                        <span class="font-bold text-xs">Tiny &amp; Cozy 🌸</span>
                     </figcaption>
                 </figure>
-
-                <!-- 3 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform -rotate-2">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="3%20months.jpeg" alt="Olivia at 3 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">OCT 2025</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">OCT 2025</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">3 Months</span>
-                        <span class="font-bold text-sm">Wide-Eyed Wonder 👀</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">3 Months</span>
+                        <span class="font-bold text-xs">Wide-Eyed Wonder 👀</span>
                     </figcaption>
                 </figure>
-
-                <!-- 4 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform rotate-1 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform rotate-1">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="4%20months.jpeg" alt="Olivia at 4 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">NOV 2025</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">NOV 2025</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">4 Months</span>
-                        <span class="font-bold text-sm">Endless Giggles 🥰</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">4 Months</span>
+                        <span class="font-bold text-xs">Endless Giggles 🥰</span>
                     </figcaption>
                 </figure>
-
-                <!-- 5 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform -rotate-1 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform -rotate-1">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="5%20months.jpeg" alt="Olivia at 5 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">DEC 2025</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">DEC 2025</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">5 Months</span>
-                        <span class="font-bold text-sm">First Christmas 🎄</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">5 Months</span>
+                        <span class="font-bold text-xs">First Christmas 🎄</span>
                     </figcaption>
                 </figure>
-
-                <!-- 6 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform rotate-2">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="6%20months.jpeg" alt="Olivia at 6 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">JAN 2026</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">JAN 2026</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">6 Months</span>
-                        <span class="font-bold text-sm">Half a Year! 🎉</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">6 Months</span>
+                        <span class="font-bold text-xs">Half a Year! 🎉</span>
                     </figcaption>
                 </figure>
-
-                <!-- 7 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform -rotate-2">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="7%20months.jpeg" alt="Olivia at 7 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">FEB 2026</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">FEB 2026</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">7 Months</span>
-                        <span class="font-bold text-sm">Sitting Pretty 🌼</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">7 Months</span>
+                        <span class="font-bold text-xs">Sitting Pretty 🌼</span>
                     </figcaption>
                 </figure>
-
-                <!-- 8 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform rotate-1 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform rotate-1">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="8%20months.jpeg" alt="Olivia at 8 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">MAR 2026</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">MAR 2026</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">8 Months</span>
-                        <span class="font-bold text-sm">Little Explorer 🌱</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">8 Months</span>
+                        <span class="font-bold text-xs">Little Explorer 🌱</span>
                     </figcaption>
                 </figure>
-
-                <!-- 9 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform -rotate-1 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform -rotate-1">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="9%20months.jpeg" alt="Olivia at 9 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">APR 2026</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">APR 2026</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">9 Months</span>
-                        <span class="font-bold text-sm">On The Move! 👶</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">9 Months</span>
+                        <span class="font-bold text-xs">On The Move! 👶</span>
                     </figcaption>
                 </figure>
-
-                <!-- Baptism -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform rotate-2">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="baptism%20(April%209).jpeg" alt="Olivia's baptism" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">APR 9, 2026</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">APR 9, 2026</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">Baptism</span>
-                        <span class="font-bold text-sm">Blessed Day 🤍</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">Baptism</span>
+                        <span class="font-bold text-xs">Blessed Day 🤍</span>
                     </figcaption>
                 </figure>
-
-                <!-- 10 Months -->
-                <figure class="bg-white p-3 rounded-xl shadow-lg border border-woodland-blush/10 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-300">
+                <figure class="bg-white p-2 rounded-xl shadow-md border border-woodland-blush/10 transform -rotate-2">
                     <div class="aspect-square bg-woodland-cream rounded-lg overflow-hidden relative border border-woodland-blush/10">
                         <img src="10%20months.jpeg" alt="Olivia at 10 months" loading="lazy" decoding="async" class="w-full h-full object-cover">
-                        <div class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 rounded-full text-[9px] font-bold text-woodland-pink border border-woodland-blush/30">MAY 2026</div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-white/95 px-1.5 py-0.5 rounded-full text-[8px] font-bold text-woodland-pink border border-woodland-blush/30">MAY 2026</div>
                     </div>
-                    <figcaption class="mt-3 text-center font-display text-woodland-brown">
-                        <span class="block text-[10px] font-bold uppercase text-woodland-darkgreen tracking-wider">10 Months</span>
-                        <span class="font-bold text-sm">Almost One! 🎂</span>
+                    <figcaption class="mt-2 text-center font-display text-woodland-brown">
+                        <span class="block text-[9px] font-bold uppercase text-woodland-darkgreen tracking-wider">10 Months</span>
+                        <span class="font-bold text-xs">Almost One! 🎂</span>
                     </figcaption>
                 </figure>
             </div>
-        </section>
+        </div>
 
-    </div>
+        <!-- ================= FOOTER ================= -->
+        <div class="text-center pb-10 pt-10 fade-in">
+            <div class="flex items-center justify-center mb-3">
+                <div class="w-8 border-t border-woodland-pink opacity-40"></div>
+                <div class="px-3 text-woodland-pink text-xs opacity-60"><i class="fas fa-heart"></i></div>
+                <div class="w-8 border-t border-woodland-pink opacity-40"></div>
+            </div>
+            <p class="font-cursive text-3xl text-woodland-pink opacity-70">See you in the garden!</p>
+            <p class="text-xs text-woodland-brown/70 font-serif italic mt-2">
+                With love, from the Soriano family
+            </p>
+        </div>
 
-    <!-- ================= MODERN MODAL COMPONENT (Custom Dialog alerts replacement) ================= -->
+    </main>
+
+    <!-- ================= MODAL ================= -->
     <div id="custom-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center border-4 border-woodland-blush/30 shadow-2xl transform scale-95 transition-all duration-300" id="modal-container">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center border-4 border-woodland-blush/30 shadow-2xl transform scale-95 transition-all duration-300" id="modal-container">
             <div class="w-16 h-16 rounded-full bg-woodland-green/20 text-woodland-darkgreen flex items-center justify-center mx-auto mb-4" id="modal-icon-bg">
                 <i class="fas fa-check text-2xl" id="modal-icon"></i>
             </div>
@@ -691,10 +611,10 @@
     </div>
 
     <script>
-        // Set the event date for Olivia Marie's 1st Birthday Invite
+        // Event date: 11 July 2026, 11:00 AM PHT
         const eventDate = new Date("July 11, 2026 11:00:00").getTime();
 
-        // ------------------ COUNTDOWN TIMER ------------------
+        // ------------------ COUNTDOWN ------------------
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = eventDate - now;
@@ -720,13 +640,12 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // ------------------ COZY MUSIC BOX SYNTHESIZER (Web Audio API) ------------------
+        // ------------------ MUSIC BOX ------------------
         let audioCtx = null;
         let isPlaying = false;
         let melodyTimeout = null;
-        let tempo = 180; // BPM
+        const tempo = 180;
 
-        // Beautiful Lullaby Melody (Twinkle Twinkle Little Star / Children Theme)
         const notes = [
             { note: "C5", duration: 1 }, { note: "C5", duration: 1 },
             { note: "G5", duration: 1 }, { note: "G5", duration: 1 },
@@ -736,7 +655,6 @@
             { note: "E5", duration: 1 }, { note: "E5", duration: 1 },
             { note: "D5", duration: 1 }, { note: "D5", duration: 1 },
             { note: "C5", duration: 2 },
-            
             { note: "G5", duration: 1 }, { note: "G5", duration: 1 },
             { note: "F5", duration: 1 }, { note: "F5", duration: 1 },
             { note: "E5", duration: 1 }, { note: "E5", duration: 1 },
@@ -758,7 +676,6 @@
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
-
             if (isPlaying) {
                 stopMusic();
             } else {
@@ -767,41 +684,33 @@
         }
 
         function startMusic() {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
             isPlaying = true;
-            document.getElementById("music-icon").className = "fas fa-pause animate-spin-slow";
-            document.getElementById("music-status").innerText = "Playing melody...";
+            document.getElementById("music-icon").className = "fas fa-pause text-xs";
+            document.getElementById("music-status").innerText = "Playing...";
             currentNoteIndex = 0;
             playNextNote();
         }
 
         function stopMusic() {
             isPlaying = false;
-            document.getElementById("music-icon").className = "fas fa-play";
-            document.getElementById("music-status").innerText = "Sound paused.";
+            document.getElementById("music-icon").className = "fas fa-play text-xs";
+            document.getElementById("music-status").innerText = "Sweet Lullaby";
             if (melodyTimeout) clearTimeout(melodyTimeout);
         }
 
         function playNextNote() {
             if (!isPlaying) return;
-
             const entry = notes[currentNoteIndex];
             const volume = parseFloat(document.getElementById("volume-slider").value);
-            
-            // Play physical sound using sine oscillator to mimic music box
+
             if (frequencies[entry.note] && volume > 0) {
                 const osc = audioCtx.createOscillator();
                 const gainNode = audioCtx.createGain();
-
                 osc.type = "sine";
                 osc.frequency.setValueAtTime(frequencies[entry.note], audioCtx.currentTime);
-                
-                // Classic music box amplitude decay
                 gainNode.gain.setValueAtTime(volume * 0.4, audioCtx.currentTime);
                 gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (entry.duration * (60 / tempo) * 0.9));
-
                 osc.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
                 osc.start();
@@ -810,24 +719,19 @@
 
             const durationInMs = entry.duration * (60 / tempo) * 1000;
             currentNoteIndex = (currentNoteIndex + 1) % notes.length;
-
             melodyTimeout = setTimeout(playNextNote, durationInMs);
         }
 
         document.getElementById("btn-music").addEventListener("click", toggleMusic);
 
-        // ------------------ CUSTOM MODALS ------------------
+        // ------------------ MODAL ------------------
         function showModal(title, text, type) {
             const modal = document.getElementById("custom-modal");
             const container = document.getElementById("modal-container");
-            const modalTitle = document.getElementById("modal-title");
-            const modalBody = document.getElementById("modal-body");
+            document.getElementById("modal-title").innerText = title;
+            document.getElementById("modal-body").innerText = text;
             const iconBg = document.getElementById("modal-icon-bg");
             const icon = document.getElementById("modal-icon");
-
-            modalTitle.innerText = title;
-            modalBody.innerText = text;
-
             if (type === 'success') {
                 iconBg.className = "w-16 h-16 rounded-full bg-woodland-green/20 text-woodland-darkgreen flex items-center justify-center mx-auto mb-4";
                 icon.className = "fas fa-check text-2xl";
@@ -835,7 +739,6 @@
                 iconBg.className = "w-16 h-16 rounded-full bg-woodland-yellow/35 text-woodland-brown flex items-center justify-center mx-auto mb-4";
                 icon.className = "fas fa-info text-2xl";
             }
-
             modal.classList.remove("opacity-0", "pointer-events-none");
             container.classList.remove("scale-95");
             container.classList.add("scale-100");
@@ -849,37 +752,13 @@
             container.classList.add("scale-95");
         }
 
-        // ------------------ CLIPBOARD HELPER ------------------
-        function copyToClipboard(text) {
-            const el = document.createElement('textarea');
-            el.value = text;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            showModal("Address Copied!", "The venue address has been copied to your clipboard. You can paste it into any navigation app!", "success");
-        }
-
-        // ------------------ MAP LAZY REVEAL ------------------
-        function revealMap() {
-            const mapCover = document.getElementById("map-cover");
-            const iframe = document.getElementById("map-iframe");
-            
-            // Switch view
-            mapCover.classList.add("hidden");
-            iframe.classList.remove("hidden");
-            
-            // Load openstreetmap coordinates for Marikina / Rancho 
-            iframe.src = "https://www.openstreetmap.org/export/embed.html?bbox=121.1000%2C14.6300%2C121.1300%2C14.6500&layer=mapnik&marker=14.6385%2C121.1158";
-        }
-
-        // ------------------ ADD TO CALENDAR (Google + Apple) ------------------
+        // ------------------ ADD TO CALENDAR ------------------
         const calendarEvent = {
             title: "Olivia Marie's 1st Birthday Party 🌸",
             details: "Olivia is turning one! Pastel, cottagecore or floral outfits are encouraged. Bring your cozy smiles! 🎉",
             location: "Rancho IV West Clubhouse, Marikina City",
-            startUTC: "20260711T030000Z", // 11 AM PHT (GMT+8)
-            endUTC: "20260711T060000Z"    // 2 PM PHT (GMT+8)
+            startUTC: "20260711T030000Z",
+            endUTC: "20260711T060000Z"
         };
 
         document.getElementById("btn-cal-google").addEventListener("click", () => {
@@ -923,7 +802,19 @@
             setTimeout(() => URL.revokeObjectURL(url), 1000);
         });
 
-        // ------------------ PARTICLES ACCENT EFFECT ------------------
+        // ------------------ FADE-IN OBSERVER ------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+        });
+
+        // ------------------ PARTICLES ------------------
         const canvas = document.getElementById('canvas-particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -944,15 +835,12 @@
                 this.speedX = Math.random() * 0.6 - 0.3;
                 this.rotation = Math.random() * 360;
                 this.rotationSpeed = Math.random() * 1 - 0.5;
-                // Randomly choose cherry blossom leaf (pink) or green leaf
                 this.type = Math.random() > 0.4 ? 'petal' : 'leaf';
             }
             update() {
                 this.y += this.speedY;
                 this.x += this.speedX;
                 this.rotation += this.rotationSpeed;
-                
-                // Wrap around bottom
                 if (this.y > canvas.height + 20) {
                     this.y = -20;
                     this.x = Math.random() * canvas.width;
@@ -962,15 +850,12 @@
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.rotation * Math.PI / 180);
-                
                 if (this.type === 'petal') {
-                    // Delicate pink blossom
                     ctx.fillStyle = 'rgba(242, 209, 209, 0.7)';
                     ctx.beginPath();
                     ctx.ellipse(0, 0, this.size, this.size * 1.5, 0, 0, Math.PI * 2);
                     ctx.fill();
                 } else {
-                    // Soft green sage leaf
                     ctx.fillStyle = 'rgba(160, 178, 150, 0.6)';
                     ctx.beginPath();
                     ctx.ellipse(0, 0, this.size * 0.8, this.size * 1.6, Math.PI / 4, 0, Math.PI * 2);
@@ -982,22 +867,16 @@
 
         function initParticles() {
             particles = [];
-            const count = Math.min(Math.floor(window.innerWidth / 25), 45);
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
+            const count = Math.min(Math.floor(window.innerWidth / 25), 30);
+            for (let i = 0; i < count; i++) particles.push(new Particle());
         }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animateParticles);
         }
 
-        // Initialize elements
         window.onload = function() {
             initParticles();
             animateParticles();
