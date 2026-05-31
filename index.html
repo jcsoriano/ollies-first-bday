@@ -89,6 +89,28 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: .85; transform: scale(1.02); }
         }
+        /* SVG hover fix: anchor the transform to the element's own bounding box,
+           not the SVG viewport. Without this, hover-scale on a translated <g> drifts,
+           the cursor falls off the element, hover ends, and it flickers back and forth. */
+        #invite-svg g[class*="hover:"],
+        #invite-svg .svg-interactive {
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+        /* Cute wiggle: rotate back-and-forth a few times with a tiny scale pop. */
+        @keyframes svg-wiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            15%      { transform: rotate(-9deg) scale(1.06); }
+            35%      { transform: rotate(8deg)  scale(1.06); }
+            55%      { transform: rotate(-6deg) scale(1.04); }
+            75%      { transform: rotate(5deg)  scale(1.04); }
+        }
+        #invite-svg .svg-interactive {
+            cursor: pointer;
+        }
+        #invite-svg .svg-interactive:hover {
+            animation: svg-wiggle 0.9s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="relative min-h-screen text-woodland-brown pb-16">
@@ -102,7 +124,7 @@
             <i id="music-icon" class="fas fa-play"></i>
         </button>
         <div class="flex flex-col text-[11px] leading-tight select-none">
-            <span class="font-bold text-woodland-brown">Woodland Lullaby</span>
+            <span class="font-bold text-woodland-brown">Sweet Lullaby</span>
             <span id="music-status" class="text-woodland-darkgreen font-semibold">Click to play sound!</span>
         </div>
         <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5" class="w-16 accent-woodland-pink cursor-pointer h-1 rounded-lg">
@@ -157,14 +179,18 @@
 
                         <!-- Cherry blossoms (Left & Right top) -->
                         <!-- Left Top Pink Flower -->
-                        <g transform="translate(48, 65) scale(0.85)" class="cursor-pointer transition-transform duration-300 hover:rotate-12 origin-center">
-                            <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                            <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
+                        <g transform="translate(48, 65) scale(0.85)">
+                            <g class="svg-interactive">
+                                <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                                <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
+                            </g>
                         </g>
                         <!-- Right Top Pink Flower -->
-                        <g transform="translate(252, 65) scale(0.85)" class="cursor-pointer transition-transform duration-300 hover:rotate-12 origin-center">
-                            <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                            <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
+                        <g transform="translate(252, 65) scale(0.85)">
+                            <g class="svg-interactive">
+                                <path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#E29595" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                                <circle cx="0" cy="0" r="3.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.7"/>
+                            </g>
                         </g>
                         <!-- Smaller accent flowers -->
                         <g transform="translate(108, 48) scale(0.55)"><path d="M 0 0 C -10 -15, 10 -15, 0 0 C -15 -10, -15 10, 0 0 C -10 15, 10 15, 0 0 C 15 10, 15 -10, 0 0" fill="#A0C3D2" stroke="#8D7B68" stroke-width="1"/><circle cx="0" cy="0" r="3" fill="#FFF"/></g>
@@ -172,35 +198,43 @@
 
                         <!-- Strawberries -->
                         <!-- Strawberry Top Left -->
-                        <g transform="translate(26, 92) rotate(-15) scale(0.8)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
-                            <!-- Berry body -->
-                            <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                            <!-- Green cap -->
-                            <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
-                            <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
-                            <!-- Little seed dots -->
-                            <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                        <g transform="translate(26, 92) rotate(-15) scale(0.8)">
+                            <g class="svg-interactive">
+                                <!-- Berry body -->
+                                <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                                <!-- Green cap -->
+                                <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                                <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                                <!-- Little seed dots -->
+                                <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                            </g>
                         </g>
                         <!-- Strawberry Middle Left -->
-                        <g transform="translate(51, 138) rotate(15) scale(0.8)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
-                            <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                            <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
-                            <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
-                            <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                        <g transform="translate(51, 138) rotate(15) scale(0.8)">
+                            <g class="svg-interactive">
+                                <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                                <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                                <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                                <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                            </g>
                         </g>
                         <!-- Strawberry Top Right -->
-                        <g transform="translate(274, 92) rotate(15) scale(0.8)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
-                            <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                            <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
-                            <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
-                            <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                        <g transform="translate(274, 92) rotate(15) scale(0.8)">
+                            <g class="svg-interactive">
+                                <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                                <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                                <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                                <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                            </g>
                         </g>
                         <!-- Strawberry Middle Right -->
-                        <g transform="translate(249, 138) rotate(-15) scale(0.8)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
-                            <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                            <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
-                            <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
-                            <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                        <g transform="translate(249, 138) rotate(-15) scale(0.8)">
+                            <g class="svg-interactive">
+                                <path d="M 0 -12 C 12 -12, 14 8, 0 16 C -14 8, -12 -12, 0 -12 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                                <path d="M -8 -11 C -4 -10, -4 -6, -4 -6 C 0 -10, 0 -6, 0 -6 C 4 -10, 4 -6, 4 -6 C 8 -11, 4 -12, -8 -11 Z" fill="#A0B296" stroke="#8D7B68" stroke-width="1"/>
+                                <rect x="-1" y="-14" width="2" height="4" rx="0.5" fill="#8D7B68"/>
+                                <circle cx="-4" cy="-2" r="0.6" fill="#FFF"/><circle cx="4" cy="-2" r="0.6" fill="#FFF"/><circle cx="0" cy="4" r="0.6" fill="#FFF"/><circle cx="-3" cy="8" r="0.6" fill="#FFF"/><circle cx="3" cy="8" r="0.6" fill="#FFF"/>
+                            </g>
                         </g>
 
                         <!-- Sparkles and Dots -->
@@ -208,32 +242,40 @@
                         <path d="M 238 105 L 238 101 M 238 105 L 238 109 M 238 105 L 234 105 M 238 105 L 242 105" stroke="#E29595" stroke-width="1.2" stroke-linecap="round"/>
                         <!-- Sunflowers (Yellow floral) -->
                         <!-- Sunflower Middle Left -->
-                        <g transform="translate(32, 172) scale(0.95)" class="cursor-pointer transition-transform duration-300 hover:scale-110 origin-center">
-                            <!-- Petals -->
-                            <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                            <!-- Center seed grid -->
-                            <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
-                            <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
+                        <g transform="translate(32, 172) scale(0.95)">
+                            <g class="svg-interactive">
+                                <!-- Petals -->
+                                <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                                <!-- Center seed grid -->
+                                <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
+                                <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
+                            </g>
                         </g>
                         <!-- Sunflower Middle Right -->
-                        <g transform="translate(268, 172) scale(0.95)" class="cursor-pointer transition-transform duration-300 hover:scale-110 origin-center">
-                            <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
-                            <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
-                            <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
+                        <g transform="translate(268, 172) scale(0.95)">
+                            <g class="svg-interactive">
+                                <path d="M 0 0 C -12 -12, 12 -12, 0 0 C -16 -4, -16 12, 0 0 C -12 16, 12 16, 0 0 C 16 12, 16 -4, 0 0 C -6 -15, 6 -15, 0 0 C -15 -6, -15 6, 0 0 C -6 15, 6 15, 0 0 C 15 6, 15 -6, 0 0" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1" filter="url(#shadow)"/>
+                                <circle cx="0" cy="0" r="8" fill="#C8B6A6" stroke="#8D7B68" stroke-width="1"/>
+                                <circle cx="0" cy="0" r="5" fill="#8D7B68"/>
+                            </g>
                         </g>
 
                         <!-- Mushrooms Left & Right middle -->
                         <!-- Mushroom Left -->
-                        <g transform="translate(41, 222) scale(0.85)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
-                            <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
-                            <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                            <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
+                        <g transform="translate(41, 222) scale(0.85)">
+                            <g class="svg-interactive">
+                                <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
+                                <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                                <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
+                            </g>
                         </g>
                         <!-- Mushroom Right -->
-                        <g transform="translate(259, 222) scale(0.85)" class="cursor-pointer transition-transform duration-300 hover:scale-125 origin-center">
-                            <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
-                            <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                            <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
+                        <g transform="translate(259, 222) scale(0.85)">
+                            <g class="svg-interactive">
+                                <path d="M -4 4 C -4 14, 4 14, 4 4 Z" fill="#FAF7F0" stroke="#8D7B68" stroke-width="1"/>
+                                <path d="M -10 4 C -10 -4, 10 -4, 10 4 Z" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                                <circle cx="-5" cy="0" r="1.2" fill="#FFF"/><circle cx="5" cy="1" r="1.2" fill="#FFF"/><circle cx="0" cy="-2" r="1.2" fill="#FFF"/>
+                            </g>
                         </g>
 
                         <!-- THE GIANT SIGNATURE "1" -->
@@ -283,10 +325,12 @@
                             <circle cx="25" cy="-75" r="2.5" fill="#F4DFB9" stroke="#8D7B68" stroke-width="0.8"/>
 
                             <!-- Big Main Pink Bellflower at center bottom -->
-                            <g transform="translate(0, -50)" class="cursor-pointer transition-transform duration-300 hover:scale-110 origin-center">
-                                <path d="M 0 -15 Q -15 -35, 0 -50 Q 15 -35, 0 -15" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
-                                <path d="M -15 -35 C -5 -35, -5 -45, 0 -50 C 5 -45, 5 -35, 15 -35 C 10 -25, -10 -25, -15 -35 Z" fill="#F2D1D1" stroke="#8D7B68" stroke-width="1"/>
-                                <circle cx="0" cy="-35" r="4" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1"/>
+                            <g transform="translate(0, -50)">
+                                <g class="svg-interactive">
+                                    <path d="M 0 -15 Q -15 -35, 0 -50 Q 15 -35, 0 -15" fill="#E29595" stroke="#8D7B68" stroke-width="1.2" filter="url(#shadow)"/>
+                                    <path d="M -15 -35 C -5 -35, -5 -45, 0 -50 C 5 -45, 5 -35, 15 -35 C 10 -25, -10 -25, -15 -35 Z" fill="#F2D1D1" stroke="#8D7B68" stroke-width="1"/>
+                                    <circle cx="0" cy="-35" r="4" fill="#F4DFB9" stroke="#8D7B68" stroke-width="1"/>
+                                </g>
                             </g>
                         </g>
                     </svg>
@@ -322,7 +366,7 @@
 
                     <!-- Invitation Warm Body -->
                     <p class="font-medium text-woodland-brown/85 text-base sm:text-lg italic max-w-md">
-                        Please join us for a whimsical, woodland-themed birthday celebration as we toast Olivia's very first magical year!
+                        Please join us for a whimsical floral garden birthday celebration as we toast Olivia's very first magical year!
                     </p>
 
                     <!-- Key details List -->
@@ -378,18 +422,18 @@
                             <span class="text-woodland-pink font-extrabold bg-white px-2 py-0.5 rounded-full border border-woodland-blush/30">11 June 2026</span>
                         </div>
                         <p class="text-xs text-woodland-brown/80">
-                            Please notify our lovely hosts <span class="font-bold text-woodland-brown">JC</span> or <span class="font-bold text-woodland-brown">Camille</span> to secure your spot in the magical woods!
+                            Please notify our lovely hosts <span class="font-bold text-woodland-brown">JC</span> or <span class="font-bold text-woodland-brown">Camille</span> to secure your spot in the garden!
                         </p>
                     </div>
                 </div>
 
                 <!-- Action Button row -->
                 <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                    <a href="#section-rsvp" class="flex-1 text-center bg-woodland-pink hover:bg-woodland-darkpink text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
-                        <i class="fas fa-paper-plane"></i> RSVP Online Now
-                    </a>
-                    <button id="btn-calendar" class="bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2" title="Add event to calendar">
-                        <i class="far fa-calendar-plus"></i> Add to Calendar
+                    <button id="btn-cal-google" class="flex-1 bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2" title="Add event to Google Calendar">
+                        <i class="fab fa-google"></i> Add to Google Calendar
+                    </button>
+                    <button id="btn-cal-apple" class="flex-1 bg-woodland-brown hover:bg-woodland-lightbrown text-white font-bold py-3.5 px-5 rounded-2xl shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2" title="Add event to Apple Calendar">
+                        <i class="fab fa-apple"></i> Add to Apple Calendar
                     </button>
                 </div>
             </section>
@@ -426,7 +470,7 @@
         <section class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
             <div class="bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl flex flex-col justify-between">
                 <div>
-                    <span class="inline-block bg-woodland-green/15 text-woodland-darkgreen font-bold text-xs px-3 py-1 rounded-full mb-3 uppercase tracking-wider">The Forest Gathering</span>
+                    <span class="inline-block bg-woodland-green/15 text-woodland-darkgreen font-bold text-xs px-3 py-1 rounded-full mb-3 uppercase tracking-wider">The Garden Gathering</span>
                     <h3 class="font-display text-2xl font-bold text-woodland-brown mb-4">Rancho IV West Clubhouse</h3>
                     <p class="text-sm text-woodland-brown/85 leading-relaxed mb-6">
                         Located nestled in beautiful Marikina City, the clubhouse is highly accessible. Guests coming by private car can find ample, secure street parking inside the subdivision gate.
@@ -439,7 +483,7 @@
                         </div>
                         <div class="flex items-start gap-3 text-xs text-woodland-brown/95">
                             <i class="fas fa-tshirt text-woodland-darkgreen mt-0.5 text-sm shrink-0"></i>
-                            <span>Dress Code hint: Pastel, woodland, cottagecore, or light floral outfits are highly encouraged! 🌸🍂</span>
+                            <span>Dress Code hint: Pastel, cottagecore, or light floral outfits are highly encouraged! 🌸🍓</span>
                         </div>
                     </div>
                 </div>
@@ -559,142 +603,6 @@
             </div>
         </section>
 
-        <!-- ================= INTERACTIVE GIFT WISHLIST ================= -->
-        <section class="mt-16 bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl">
-            <div class="text-center max-w-lg mx-auto mb-8">
-                <span class="text-woodland-pink font-bold text-xs uppercase tracking-wider block">GIFT REGISTRY IDEAS</span>
-                <h3 class="font-display text-2xl font-bold text-woodland-brown">Olivia's Whimsical Wishlist</h3>
-                <p class="text-xs text-woodland-brown/85 mt-1">Your presence is our absolute biggest gift! If you wish to bring a token of love, here are categories she would adore.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="wishlist-container">
-                <!-- Gift Item 1 -->
-                <div class="bg-woodland-cream/40 border border-woodland-blush/20 rounded-2xl p-4 flex items-center justify-between hover:bg-woodland-cream transition-colors group" id="gift-1">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-woodland-yellow/30 flex items-center justify-center text-woodland-brown text-base">
-                            🧱
-                        </div>
-                        <div class="text-left">
-                            <span class="font-bold text-sm text-woodland-brown block">Wooden Blocks / Toys</span>
-                            <span class="text-[10px] text-woodland-darkgreen font-semibold">Cottagecore aesthetics</span>
-                        </div>
-                    </div>
-                    <button onclick="claimGift(1)" class="bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm group-hover:scale-105" id="btn-gift-1">
-                        Claim Idea
-                    </button>
-                </div>
-
-                <!-- Gift Item 2 -->
-                <div class="bg-woodland-cream/40 border border-woodland-blush/20 rounded-2xl p-4 flex items-center justify-between hover:bg-woodland-cream transition-colors group" id="gift-2">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-woodland-pink/20 flex items-center justify-center text-woodland-pink text-base">
-                            📚
-                        </div>
-                        <div class="text-left">
-                            <span class="font-bold text-sm text-woodland-brown block">Picture Storybooks</span>
-                            <span class="text-[10px] text-woodland-darkgreen font-semibold">Classic animal tales</span>
-                        </div>
-                    </div>
-                    <button onclick="claimGift(2)" class="bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm group-hover:scale-105" id="btn-gift-2">
-                        Claim Idea
-                    </button>
-                </div>
-
-                <!-- Gift Item 3 -->
-                <div class="bg-woodland-cream/40 border border-woodland-blush/20 rounded-2xl p-4 flex items-center justify-between hover:bg-woodland-cream transition-colors group" id="gift-3">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-woodland-green/20 flex items-center justify-center text-woodland-darkgreen text-base">
-                            👗
-                        </div>
-                        <div class="text-left">
-                            <span class="font-bold text-sm text-woodland-brown block">Pastel Clothes (12-18m)</span>
-                            <span class="text-[10px] text-woodland-darkgreen font-semibold">Soft cotton floral sets</span>
-                        </div>
-                    </div>
-                    <button onclick="claimGift(3)" class="bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm group-hover:scale-105" id="btn-gift-3">
-                        Claim Idea
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= RSVP FORM & LIVE GUESTBOARD ================= -->
-        <section id="section-rsvp" class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            <!-- Form Block -->
-            <div class="lg:col-span-5 bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl">
-                <div class="mb-6">
-                    <h3 class="font-display text-2xl font-bold text-woodland-brown">Send Your RSVP</h3>
-                    <p class="text-xs text-woodland-darkgreen font-semibold mt-1">Please confirm by 11 June 2026</p>
-                    <div class="w-10 h-0.5 bg-woodland-pink mt-2"></div>
-                </div>
-
-                <form id="rsvp-form" onsubmit="handleRSVPSubmit(event)" class="space-y-4 text-left">
-                    <div>
-                        <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Your Full Name</label>
-                        <input type="text" id="form-name" required placeholder="e.g. Aunt Sally" class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink focus:ring-2 focus:ring-woodland-pink/15 rounded-xl px-4 py-3 text-sm transition-all outline-none">
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Attendance</label>
-                            <select id="form-status" class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink rounded-xl px-3 py-3 text-xs font-semibold transition-all outline-none">
-                                <option value="yes">Joyfully Attending</option>
-                                <option value="no">Regretfully Declining</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Total Guests</label>
-                            <select id="form-guests" class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink rounded-xl px-3 py-3 text-xs font-semibold transition-all outline-none">
-                                <option value="1">1 person</option>
-                                <option value="2">2 people</option>
-                                <option value="3">3 people</option>
-                                <option value="4">4 people</option>
-                                <option value="5+">5+ people</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Dietary Preferences</label>
-                        <input type="text" id="form-diet" placeholder="None / Vegetarian / Allergies" class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink rounded-xl px-4 py-3 text-xs transition-all outline-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-woodland-brown uppercase tracking-wider mb-1">Sweet Message for Olivia</label>
-                        <textarea id="form-message" rows="3" placeholder="Write a warm wish or birthday note..." class="w-full bg-woodland-cream/60 border border-woodland-lightbrown/40 focus:border-woodland-pink rounded-xl px-4 py-3 text-xs transition-all outline-none resize-none"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-woodland-pink hover:bg-woodland-darkpink text-white font-bold py-3 px-6 rounded-xl text-sm transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-md">
-                        <i class="fas fa-heart"></i> Submit RSVP Info
-                    </button>
-                </form>
-            </div>
-
-            <!-- Live Message Wall/Board -->
-            <div class="lg:col-span-7 bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-woodland-blush/20 shadow-xl flex flex-col justify-between h-full min-h-[460px]">
-                <div>
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-display text-2xl font-bold text-woodland-brown">Woodland Message Wall</h3>
-                        <span id="rsvp-count" class="bg-woodland-green/15 text-woodland-darkgreen font-bold text-[11px] px-3 py-1 rounded-full border border-woodland-green/30">0 RSVPs posted</span>
-                    </div>
-                    <div class="w-10 h-0.5 bg-woodland-pink mb-4"></div>
-                </div>
-
-                <!-- Custom Sticky Notes Container -->
-                <div class="flex-1 overflow-y-auto max-h-[350px] pr-2 space-y-4" id="guestbook-wall">
-                    <!-- Default Cozy Fallback Message if guestbook is empty -->
-                    <div id="guestbook-empty" class="h-full flex flex-col items-center justify-center text-center py-12">
-                        <div class="w-16 h-16 rounded-full bg-woodland-cream flex items-center justify-center mb-3">
-                            <i class="far fa-envelope-open text-woodland-pink/40 text-2xl"></i>
-                        </div>
-                        <h4 class="font-display font-bold text-sm text-woodland-brown">No Messages Yet</h4>
-                        <p class="text-[11px] text-woodland-brown/85 max-w-xs mt-1">Be the very first guest to send an online RSVP message to appear here on the woodland wall!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </div>
 
     <!-- ================= MODERN MODAL COMPONENT (Custom Dialog alerts replacement) ================= -->
@@ -740,139 +648,6 @@
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
-
-        // ------------------ LOCAL STATE / MOCK DATA ------------------
-        let claimedGifts = JSON.parse(localStorage.getItem('olivia_gifts')) || {};
-        let rsvpGuestList = JSON.parse(localStorage.getItem('olivia_rsvp_list')) || [
-            { name: "Aunt Sally", status: "yes", guests: "2", diet: "Nut Allergy", message: "Can't wait to see sweet Olivia turn one! Sending so much love!" },
-            { name: "Cousin Liam", status: "yes", guests: "1", diet: "None", message: "Excited for the birthday cake and games! 🌸" }
-        ];
-
-        // ------------------ RSVP SUBMISSION ------------------
-        function handleRSVPSubmit(event) {
-            event.preventDefault();
-            const nameVal = document.getElementById("form-name").value.trim();
-            const statusVal = document.getElementById("form-status").value;
-            const guestsVal = document.getElementById("form-guests").value;
-            const dietVal = document.getElementById("form-diet").value.trim() || "None";
-            const messageVal = document.getElementById("form-message").value.trim() || "So excited! 🌸";
-
-            if (!nameVal) return;
-
-            // Save to internal state
-            const rsvpItem = { name: nameVal, status: statusVal, guests: guestsVal, diet: dietVal, message: messageVal };
-            rsvpGuestList.unshift(rsvpItem); // Add new to top
-            localStorage.setItem('olivia_rsvp_list', JSON.stringify(rsvpGuestList));
-
-            // Reset form
-            document.getElementById("rsvp-form").reset();
-
-            // Refresh UI
-            renderGuestbook();
-
-            // Show beautiful Success Modal
-            showModal(
-                "Thank You so Much!",
-                `We have received your RSVP confirmation, ${nameVal}! Looking forward to a wonderful woodland celebration.`,
-                "success"
-            );
-        }
-
-        function renderGuestbook() {
-            const container = document.getElementById("guestbook-wall");
-            const countLabel = document.getElementById("rsvp-count");
-            
-            if (rsvpGuestList.length === 0) {
-                document.getElementById("guestbook-empty").classList.remove("hidden");
-                countLabel.innerText = "0 RSVPs posted";
-                return;
-            }
-
-            document.getElementById("guestbook-empty").classList.add("hidden");
-            
-            // Clean older children except empty fallback
-            const children = Array.from(container.children);
-            children.forEach(c => {
-                if (c.id !== "guestbook-empty") c.remove();
-            });
-
-            // Count total attending guests
-            let totalAttending = 0;
-            rsvpGuestList.forEach(g => {
-                if (g.status === 'yes') {
-                    const count = g.guests === '5+' ? 5 : parseInt(g.guests);
-                    totalAttending += count;
-                }
-            });
-            countLabel.innerText = `${rsvpGuestList.length} RSVPs (${totalAttending} guests attending)`;
-
-            rsvpGuestList.forEach(rsvp => {
-                const note = document.createElement("div");
-                note.className = "p-4 rounded-2xl border transition-all duration-300 bg-white/50 border-woodland-blush/20 relative shadow-sm hover:scale-[1.01]";
-                
-                const statusColor = rsvp.status === 'yes' ? 'text-woodland-darkgreen bg-woodland-green/10' : 'text-woodland-darkpink bg-woodland-blush/20';
-                const statusText = rsvp.status === 'yes' ? 'Joyfully Attending' : 'Regretfully Declining';
-
-                note.innerHTML = `
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="font-display font-extrabold text-sm text-woodland-brown">${escapeHtml(rsvp.name)}</span>
-                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full ${statusColor}">${statusText} (${rsvp.guests})</span>
-                    </div>
-                    <p class="text-xs text-woodland-brown/90 italic mb-2 leading-relaxed">"${escapeHtml(rsvp.message)}"</p>
-                    <div class="flex items-center justify-between text-[10px] text-woodland-brown/70 pt-2 border-t border-woodland-blush/10">
-                        <span>Dietary: <strong class="text-woodland-darkgreen">${escapeHtml(rsvp.diet)}</strong></span>
-                        <span class="opacity-50">Just now</span>
-                    </div>
-                `;
-                container.appendChild(note);
-            });
-        }
-
-        function escapeHtml(text) {
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-        // ------------------ WISHLIST FUNCTIONALITY ------------------
-        function claimGift(id) {
-            if (claimedGifts[id]) {
-                // Unclaim
-                delete claimedGifts[id];
-                localStorage.setItem('olivia_gifts', JSON.stringify(claimedGifts));
-                updateWishlistUI(id, false);
-                showModal("Item Unclaimed", "This category has been marked back as open so other guests can check it.", "info");
-            } else {
-                // Claim
-                claimedGifts[id] = true;
-                localStorage.setItem('olivia_gifts', JSON.stringify(claimedGifts));
-                updateWishlistUI(id, true);
-                showModal("Thank You!", "This category has been marked as claimed on your device to coordinate gift selections.", "success");
-            }
-        }
-
-        function updateWishlistUI(id, isClaimed) {
-            const btn = document.getElementById(`btn-gift-${id}`);
-            const card = document.getElementById(`gift-${id}`);
-            if (isClaimed) {
-                btn.innerHTML = `<i class="fas fa-check"></i> Claimed`;
-                btn.className = "bg-woodland-brown text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm";
-                card.classList.add("opacity-75");
-            } else {
-                btn.innerHTML = "Claim Idea";
-                btn.className = "bg-woodland-green hover:bg-woodland-darkgreen text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all flex items-center gap-1 shadow-sm group-hover:scale-105";
-                card.classList.remove("opacity-75");
-            }
-        }
-
-        function initWishlist() {
-            Object.keys(claimedGifts).forEach(id => {
-                updateWishlistUI(id, true);
-            });
-        }
 
         // ------------------ COZY MUSIC BOX SYNTHESIZER (Web Audio API) ------------------
         let audioCtx = null;
@@ -1027,16 +802,54 @@
             iframe.src = "https://www.openstreetmap.org/export/embed.html?bbox=121.1000%2C14.6300%2C121.1300%2C14.6500&layer=mapnik&marker=14.6385%2C121.1158";
         }
 
-        // ------------------ ADD TO CALENDAR HELPER ------------------
-        document.getElementById("btn-calendar").addEventListener("click", () => {
-            const title = encodeURIComponent("Olivia Marie's 1st Birthday Party 🌸");
-            const details = encodeURIComponent("Olivia is turning one! Pastel, woodland or floral outfits are encouraged. Bring your cozy smiles! 🎉");
-            const location = encodeURIComponent("Rancho IV West Clubhouse, Marikina City");
-            const startDate = "20260711T030000Z"; // UTC Time equivalent to 11 AM PHT (GMT+8)
-            const endDate = "20260711T060000Z";   // UTC Time equivalent to 2 PM PHT (GMT+8)
+        // ------------------ ADD TO CALENDAR (Google + Apple) ------------------
+        const calendarEvent = {
+            title: "Olivia Marie's 1st Birthday Party 🌸",
+            details: "Olivia is turning one! Pastel, cottagecore or floral outfits are encouraged. Bring your cozy smiles! 🎉",
+            location: "Rancho IV West Clubhouse, Marikina City",
+            startUTC: "20260711T030000Z", // 11 AM PHT (GMT+8)
+            endUTC: "20260711T060000Z"    // 2 PM PHT (GMT+8)
+        };
 
-            const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
-            window.open(googleUrl, '_blank');
+        document.getElementById("btn-cal-google").addEventListener("click", () => {
+            const params = new URLSearchParams({
+                action: "TEMPLATE",
+                text: calendarEvent.title,
+                dates: `${calendarEvent.startUTC}/${calendarEvent.endUTC}`,
+                details: calendarEvent.details,
+                location: calendarEvent.location
+            });
+            window.open(`https://calendar.google.com/calendar/render?${params.toString()}`, '_blank');
+        });
+
+        document.getElementById("btn-cal-apple").addEventListener("click", () => {
+            const icsLines = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "PRODID:-//Olivia Marie//Birthday Invitation//EN",
+                "CALSCALE:GREGORIAN",
+                "METHOD:PUBLISH",
+                "BEGIN:VEVENT",
+                `UID:olivia-1st-birthday-${calendarEvent.startUTC}@invitation`,
+                `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')}`,
+                `DTSTART:${calendarEvent.startUTC}`,
+                `DTEND:${calendarEvent.endUTC}`,
+                `SUMMARY:${calendarEvent.title}`,
+                `DESCRIPTION:${calendarEvent.details}`,
+                `LOCATION:${calendarEvent.location}`,
+                "END:VEVENT",
+                "END:VCALENDAR"
+            ];
+            const ics = icsLines.join("\r\n");
+            const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "olivia-1st-birthday.ics";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
         });
 
         // ------------------ PARTICLES ACCENT EFFECT ------------------
@@ -1117,8 +930,6 @@
         window.onload = function() {
             initParticles();
             animateParticles();
-            initWishlist();
-            renderGuestbook();
         };
     </script>
 </body>
